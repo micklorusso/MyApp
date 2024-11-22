@@ -8,16 +8,47 @@
 import UIKit
 
 class PokemonCell: UITableViewCell {
+ 
+    @IBOutlet weak var pokemonNameLabel: UILabel!
+    
 
+    @IBOutlet weak var pokemonImageView: UIImageView!
+    
+    @IBOutlet weak var typesStackView: UIStackView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func configure(with pokemon: PokemonModel){
+        pokemonNameLabel.text = pokemon.name
+        if let imageUrl = URL(string: pokemon.image) {
+            URLSession.shared.dataTask(with: imageUrl) { data, response, error in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.pokemonImageView.image = image
+                    }
+                } else {
+                    print("Failed to load image: \(error?.localizedDescription ?? "Unknown error")")
+                }
+            }.resume()
+        } else {
+            print("Invalid URL")
+        }
+        let currentTypes = typesStackView.arrangedSubviews.compactMap { ($0 as? UILabel)?.text }
+        if currentTypes != pokemon.types {
+               typesStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+            for type in pokemon.types {
+                   let typeLabel = UILabel()
+                   typeLabel.text = type
+                   typeLabel.font = UIFont.systemFont(ofSize: 14)
+                   typeLabel.textColor = .darkGray
+                   typesStackView.addArrangedSubview(typeLabel)
+               }
+           }
     }
+    
+
     
 }
