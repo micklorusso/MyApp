@@ -6,11 +6,11 @@
 //
 
 struct PokemonList: Decodable{
-    let results: [PokemonListData]
+    let results: [Result]
 }
 
 
-struct PokemonListData: Decodable{
+struct Result: Decodable{
     let name: String
     let url: String
 }

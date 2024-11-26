@@ -15,11 +15,12 @@ class PokedexViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: K.Cells.pokemonCellNibName, bundle: nil), forCellReuseIdentifier: K.Cells.pokemonCellIdentifier)
+        tableView.register(UINib(nibName: Constants.Cells.pokemonCellNibName, bundle: nil), forCellReuseIdentifier: Constants.Cells.pokemonCellIdentifier)
         
-        pokedexManger.pokemonApi.delegate = self
-
+        pokedexManger.pokemonListService.delegate = self
+        pokedexManger.loadPokemon()
     }
     
 }
@@ -31,16 +32,24 @@ extension PokedexViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let pokemon = pokedexManger.getPokemon(at: indexPath.row)
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.Cells.pokemonCellIdentifier, for: indexPath) as! PokemonCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cells.pokemonCellIdentifier, for: indexPath) as! PokemonCell
         cell.configure(with: pokemon)
         return cell
     }
 }
 
-extension PokedexViewController: PokemonApiDelegate{
-    func didUpdatePokemon(_ pokemonApi: PokemonApi, pokemon: PokemonModel) {
-        pokedexManger.addPokemon(pokemon)
+extension PokedexViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == pokedexManger.getPokedexCount() - 1 {
+            pokedexManger.loadPokemon()
+        }
+    }
+}
+
+extension PokedexViewController: PokemonListDelegate{
+    func didUpdatePokemonList(_ pokemonApi: PokemonApi, pokemon: [PokemonListModel]) {
         DispatchQueue.main.async{
+            self.pokedexManger.addPokemon(pokemon)
             self.tableView.reloadData()
         }
     }

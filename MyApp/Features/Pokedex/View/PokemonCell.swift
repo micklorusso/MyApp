@@ -21,20 +21,22 @@ class PokemonCell: UITableViewCell {
         // Initialization code
     }
 
-    func configure(with pokemon: PokemonModel){
+    func configure(with pokemon: PokemonListModel){
         pokemonNameLabel.text = pokemon.name
-        if let imageUrl = URL(string: pokemon.image) {
-            URLSession.shared.dataTask(with: imageUrl) { data, response, error in
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.pokemonImageView.image = image
+        if let image = pokemon.image{
+            if let imageUrl = URL(string: image) {
+                URLSession.shared.dataTask(with: imageUrl) { data, response, error in
+                    if let data = data, let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self.pokemonImageView.image = image
+                        }
+                    } else {
+                        print("Failed to load image: \(error?.localizedDescription ?? "Unknown error")")
                     }
-                } else {
-                    print("Failed to load image: \(error?.localizedDescription ?? "Unknown error")")
-                }
-            }.resume()
-        } else {
-            print("Invalid URL")
+                }.resume()
+            } else {
+                print("Invalid URL")
+            }
         }
         let currentTypes = typesStackView.arrangedSubviews.compactMap { ($0 as? UILabel)?.text }
         if currentTypes != pokemon.types {
