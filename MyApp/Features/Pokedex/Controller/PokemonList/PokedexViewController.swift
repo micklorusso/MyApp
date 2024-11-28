@@ -44,6 +44,18 @@ extension PokedexViewController: UITableViewDelegate{
             pokedexManger.loadPokemon()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: Constants.Segue.pokedexToDetail, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! PokemonDetailViewController
+        destinationVC.hidesBottomBarWhenPushed = true
+        if let indexPath = tableView.indexPathForSelectedRow{
+            destinationVC.pokemonID = pokedexManger.getPokemon(at: indexPath.row).id
+        }
+    }
 }
 
 extension PokedexViewController: PokemonListDelegate{

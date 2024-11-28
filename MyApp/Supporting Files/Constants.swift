@@ -4,6 +4,7 @@
 //
 //  Created by Lorusso, Michele on 22/11/24.
 //
+import UIKit
 
 struct Constants{
     static let pokemonPerPage = 10
@@ -23,6 +24,20 @@ struct Constants{
         static let pokedexToDetail = "PokedexToDetail"
     }
     struct Nib{
-        static let aboutView = "AboutView"
+        static let displaySection = "DisplaySection"
+        static let aboutSection = "AboutSection"
     }
+    
+    static let pokedexColorMap =  [
+        "red": UIColor.red,
+        "blue": UIColor.blue,
+        "yellow": UIColor.yellow,
+        "green": UIColor.green,
+        "black": UIColor.black,
+        "brown": UIColor.brown,
+        "purple": UIColor.purple,
+        "gray": UIColor.gray,
+        "white": UIColor.white,
+        "pink": UIColor.systemPink
+    ]
 }

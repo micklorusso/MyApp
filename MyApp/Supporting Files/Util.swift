@@ -1,34 +1,22 @@
 //
-//  PokemonCell.swift
+//  Util.swift
 //  MyApp
 //
-//  Created by Lorusso, Michele on 22/11/24.
+//  Created by Lorusso, Michele on 27/11/24.
 //
 
+import Foundation
 import UIKit
 
-class PokemonCell: UITableViewCell {
- 
-    @IBOutlet weak var pokemonNameLabel: UILabel!
+class Util{
     
-
-    @IBOutlet weak var pokemonImageView: UIImageView!
-    
-    @IBOutlet weak var typesStackView: UIStackView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    func configure(with pokemon: PokemonListModel){
-        pokemonNameLabel.text = pokemon.name
-        if let image = pokemon.image{
+    static func loadImage(imageStr: String?, in imageView: UIImageView){
+        if let image = imageStr{
             if let imageUrl = URL(string: image) {
                 URLSession.shared.dataTask(with: imageUrl) { data, response, error in
                     if let data = data, let image = UIImage(data: data) {
                         DispatchQueue.main.async {
-                            self.pokemonImageView.image = image
+                            imageView.image = image
                         }
                     } else {
                         print("Failed to load image: \(error?.localizedDescription ?? "Unknown error")")
@@ -38,19 +26,21 @@ class PokemonCell: UITableViewCell {
                 print("Invalid URL")
             }
         }
+    }
+    
+    
+    static func loadTypes(types: [String], in typesStackView: UIStackView, labelColor: UIColor){
         let currentTypes = typesStackView.arrangedSubviews.compactMap { ($0 as? UILabel)?.text }
-        if currentTypes != pokemon.types {
+        if currentTypes != types {
                typesStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-            for type in pokemon.types {
+            for type in types {
                    let typeLabel = UILabel()
                    typeLabel.text = type
                    typeLabel.font = UIFont.systemFont(ofSize: 14)
-                   typeLabel.textColor = .darkGray
+                   typeLabel.textColor = labelColor
                    typesStackView.addArrangedSubview(typeLabel)
                }
            }
     }
-    
-
     
 }

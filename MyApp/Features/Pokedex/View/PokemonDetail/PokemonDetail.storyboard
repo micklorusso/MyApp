@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pokemon Detail View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="PokemonDetail" id="Y6W-OH-hqX" customClass="PokemonDetailViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="umq-ZI-0YZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Khl-G8-QU5" customClass="DisplaySectionWrapper" customModule="MyApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="185"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sdB-iu-CPh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Khl-G8-QU5" firstAttribute="top" secondItem="sdB-iu-CPh" secondAttribute="top" id="0Fg-0C-GxT"/>
+                            <constraint firstItem="Khl-G8-QU5" firstAttribute="leading" secondItem="sdB-iu-CPh" secondAttribute="leading" id="IHN-QY-qdb"/>
+                            <constraint firstItem="sdB-iu-CPh" firstAttribute="bottom" secondItem="Khl-G8-QU5" secondAttribute="bottom" constant="633" id="VfU-Kf-Z47"/>
+                            <constraint firstItem="sdB-iu-CPh" firstAttribute="trailing" secondItem="Khl-G8-QU5" secondAttribute="trailing" id="WWp-0k-jxZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="displaySection" destination="Khl-G8-QU5" id="Jn5-CI-NZB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="66.666666666666671" y="-38.169642857142854"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

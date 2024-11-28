@@ -33,11 +33,22 @@
                     <navigationItem key="navigationItem" title="Pokédex" id="Vwr-me-Hgk"/>
                     <connections>
                         <outlet property="tableView" destination="7Fn-ki-80F" id="QPd-xa-eoz"/>
+                        <segue destination="iHy-vQ-bab" kind="show" identifier="PokedexToDetail" id="KWQ-Ll-Fya"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQC-rz-hWG" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1054.1984732824426" y="-34.507042253521128"/>
+        </scene>
+        <!--PokemonDetail-->
+        <scene sceneID="CnS-eN-Sm3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PokemonDetail" referencedIdentifier="PokemonDetail" id="iHy-vQ-bab" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="76x-mx-xcf"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bem-VW-cAG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1884" y="-35"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uGI-qC-oSf">

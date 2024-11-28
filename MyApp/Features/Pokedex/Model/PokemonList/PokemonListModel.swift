@@ -5,11 +5,14 @@
 //  Created by Lorusso, Michele on 22/11/24.
 //
 
+import UIKit
+
 struct PokemonListModel{
     var name: String?
     var image: String?
     var types: [String] = []
     var order: Int?
+    var id: Int?
     
     init(pokemonDetail: PokemonDetail){
         self.name = pokemonDetail.name
@@ -20,6 +23,7 @@ struct PokemonListModel{
             }
         }
         self.order = pokemonDetail.order
+        self.id = pokemonDetail.id
     }
     
 }

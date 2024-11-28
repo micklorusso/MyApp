@@ -44,4 +44,17 @@ struct TypeInfo: Decodable{
 
 struct Sprites: Decodable{
     let front_default: String
+    let other: OtherSprites
+}
+
+struct OtherSprites: Decodable{
+    let officialArtwork: OfficialArtwork
+
+       enum CodingKeys: String, CodingKey {
+           case officialArtwork = "official-artwork"
+       }
+}
+
+struct OfficialArtwork: Decodable{
+    let front_default: String
 }
