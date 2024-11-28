@@ -9,13 +9,10 @@ import UIKit
 
 class PokemonDetailViewController: UIViewController {
 
-    
     var pokemonID: Int?
     var pokemonDetailManager: PokemonDetailManager?
 
-
-    @IBOutlet weak var displaySection: UIView!
-    
+    @IBOutlet weak var displaySection: DisplaySection!
     
     
     @IBOutlet weak var aboutSection: AboutSection!
@@ -38,7 +35,7 @@ extension PokemonDetailViewController: PokemonDetailDelegate {
         pokemonDetailManager?.pokemonDetail = pokemon
         
         DispatchQueue.main.async{
-            (self.displaySection as? DisplaySectionWrapper)?.contentView.configure(pokemon: pokemon)
+            self.displaySection.configure(pokemon: pokemon)
             //self.aboutSection.configure(pokemon: pokemon)
         }
     }
