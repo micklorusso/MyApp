@@ -16,17 +16,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Khl-G8-QU5" customClass="DisplaySection" customModule="MyApp" customModuleProvider="target">
-                                <rect key="frame" x="49" y="44" width="317" height="185"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ooe-ji-qMu" customClass="DisplaySection" customModule="MyApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="380"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="380" id="LQn-Rj-AS2"/>
+                                </constraints>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Npe-Vi-5LC">
+                                <rect key="frame" x="0.0" y="455" width="414" height="441"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1L-ho-udk" customClass="BaseStatsSection" customModule="MyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="441"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="441" id="ZkI-7m-osV"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8g-DK-XYP" customClass="AboutSection" customModule="MyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="441"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="441" id="UOR-yj-VdK"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="t8g-DK-XYP" secondAttribute="trailing" id="64B-Ao-p0u"/>
+                                    <constraint firstItem="G1L-ho-udk" firstAttribute="leading" secondItem="Npe-Vi-5LC" secondAttribute="leading" id="RgT-FX-jzR"/>
+                                    <constraint firstItem="t8g-DK-XYP" firstAttribute="top" secondItem="Npe-Vi-5LC" secondAttribute="top" id="SgI-BR-xx2"/>
+                                    <constraint firstAttribute="bottom" secondItem="t8g-DK-XYP" secondAttribute="bottom" id="l5v-Mh-xUH"/>
+                                    <constraint firstItem="t8g-DK-XYP" firstAttribute="leading" secondItem="Npe-Vi-5LC" secondAttribute="leading" id="mQf-et-Clp"/>
+                                    <constraint firstAttribute="bottom" secondItem="G1L-ho-udk" secondAttribute="bottom" id="utf-4r-Nzb"/>
+                                    <constraint firstItem="G1L-ho-udk" firstAttribute="top" secondItem="Npe-Vi-5LC" secondAttribute="top" id="vfU-2P-zAq"/>
+                                    <constraint firstAttribute="trailing" secondItem="G1L-ho-udk" secondAttribute="trailing" id="z8c-bN-6kW"/>
+                                </constraints>
+                            </scrollView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Y3v-RP-mTA">
+                                <rect key="frame" x="0.0" y="424" width="414" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="D9w-Vt-6qC"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="About"/>
+                                    <segment title="Base Stats"/>
+                                </segments>
+                                <connections>
+                                    <action selector="tabChanged:" destination="Y6W-OH-hqX" eventType="valueChanged" id="wWx-qy-IxT"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sdB-iu-CPh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Npe-Vi-5LC" firstAttribute="leading" secondItem="sdB-iu-CPh" secondAttribute="leading" id="5lT-iw-t6q"/>
+                            <constraint firstItem="t8g-DK-XYP" firstAttribute="width" secondItem="umq-ZI-0YZ" secondAttribute="width" id="Bn7-GM-P07"/>
+                            <constraint firstAttribute="bottom" secondItem="Npe-Vi-5LC" secondAttribute="bottom" id="FDd-jw-9vz"/>
+                            <constraint firstItem="Y3v-RP-mTA" firstAttribute="top" secondItem="Ooe-ji-qMu" secondAttribute="bottom" id="HCN-eV-asZ"/>
+                            <constraint firstItem="Npe-Vi-5LC" firstAttribute="top" secondItem="Y3v-RP-mTA" secondAttribute="bottom" id="IKb-0I-6hD"/>
+                            <constraint firstItem="Npe-Vi-5LC" firstAttribute="trailing" secondItem="sdB-iu-CPh" secondAttribute="trailing" id="T8T-DY-k1i"/>
+                            <constraint firstItem="Y3v-RP-mTA" firstAttribute="top" secondItem="Ooe-ji-qMu" secondAttribute="bottom" id="f2e-Nc-PWa"/>
+                            <constraint firstItem="Ooe-ji-qMu" firstAttribute="leading" secondItem="sdB-iu-CPh" secondAttribute="leading" id="gp2-Jq-710"/>
+                            <constraint firstItem="Ooe-ji-qMu" firstAttribute="trailing" secondItem="sdB-iu-CPh" secondAttribute="trailing" id="nIM-nX-0y3"/>
+                            <constraint firstItem="Ooe-ji-qMu" firstAttribute="top" secondItem="sdB-iu-CPh" secondAttribute="top" id="qJK-l9-gJC"/>
+                            <constraint firstItem="Y3v-RP-mTA" firstAttribute="leading" secondItem="sdB-iu-CPh" secondAttribute="leading" id="wJA-K8-Him"/>
+                            <constraint firstItem="Y3v-RP-mTA" firstAttribute="trailing" secondItem="sdB-iu-CPh" secondAttribute="trailing" id="wok-C9-jYJ"/>
+                        </constraints>
                     </view>
+                    <size key="freeformSize" width="414" height="896"/>
                     <connections>
-                        <outlet property="displaySection" destination="Khl-G8-QU5" id="syj-i0-ynt"/>
+                        <outlet property="aboutSection" destination="t8g-DK-XYP" id="SpM-JM-fVw"/>
+                        <outlet property="baseStatsSection" destination="G1L-ho-udk" id="zFE-Wg-Nb2"/>
+                        <outlet property="displaySection" destination="Ooe-ji-qMu" id="N0Z-LJ-FXG"/>
+                        <outlet property="tabSegmentedControl" destination="Y3v-RP-mTA" id="usy-et-ziS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

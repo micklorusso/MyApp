@@ -23,10 +23,6 @@ struct Constants{
     struct Segue{
         static let pokedexToDetail = "PokedexToDetail"
     }
-    struct Nib{
-        static let displaySection = "DisplaySection"
-        static let aboutSection = "AboutSection"
-    }
     
     static let pokedexColorMap =  [
         "red": UIColor.red,

@@ -42,7 +42,7 @@ struct PokemonDetailModel{
         }
         
         if let height = pokemonDetail.height {
-            self.height = "\(String(format: "%.2f" , Float(height) / 10.0)) cm"
+            self.height = "\(String(format: "%.2f" , Float(height) * 10.0)) cm"
         } else{
             self.height = nil
         }
@@ -77,10 +77,10 @@ struct PokemonDetailModel{
         var total = 0
         if let pokemonStats =  pokemonDetail.stats{
             for stat in pokemonStats{
-                stats.append(Stathistic(name: stat.stat.name, value: stat.base_stat))
+                stats.append(Stathistic(name: stat.stat.name, value: stat.base_stat, valueFloat: Float(stat.base_stat) / 100.0))
                 total += stat.base_stat
             }
-            stats.append(Stathistic(name: "total", value: total))
+            stats.append(Stathistic(name: "total", value: total, valueFloat: Float(total) / Float(stats.count * 100)))
         }
         
         self.color = Constants.pokedexColorMap[pokemonSpecies.color.name]
@@ -96,4 +96,5 @@ struct Gender{
 struct Stathistic{
     let name: String
     let value: Int
+    var valueFloat: Float
 }

@@ -13,9 +13,15 @@ class PokemonDetailViewController: UIViewController {
     var pokemonDetailManager: PokemonDetailManager?
 
     @IBOutlet weak var displaySection: DisplaySection!
-    
-    
     @IBOutlet weak var aboutSection: AboutSection!
+    @IBOutlet weak var baseStatsSection: BaseStatsSection!
+    
+    @IBOutlet weak var tabSegmentedControl: UISegmentedControl!
+    
+    enum Section: Int {
+        case about = 0
+        case baseStats = 1
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +29,27 @@ class PokemonDetailViewController: UIViewController {
         if let id = pokemonID{
             pokemonDetailManager = PokemonDetailManager(id: id)
             pokemonDetailManager!.pokemonDetailService.delegate = self
+            tabSegmentedControl.selectedSegmentIndex = 0
+            tabChanged(tabSegmentedControl)
         }
 
     }
     
+    @IBAction func tabChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case Section.about.rawValue:
+            baseStatsSection.isHidden = true
+            aboutSection.isHidden = false
+        case Section.baseStats.rawValue:
+            aboutSection.isHidden = true
+            baseStatsSection.isHidden = false
+        default:
+            break
+        }
+    }
 }
+
+
 
 
 extension PokemonDetailViewController: PokemonDetailDelegate {
@@ -36,7 +58,8 @@ extension PokemonDetailViewController: PokemonDetailDelegate {
         
         DispatchQueue.main.async{
             self.displaySection.configure(pokemon: pokemon)
-            //self.aboutSection.configure(pokemon: pokemon)
+            self.aboutSection.configure(pokemon: pokemon)
+            self.baseStatsSection.configure(pokemon: pokemon)
         }
     }
     

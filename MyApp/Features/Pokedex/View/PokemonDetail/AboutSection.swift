@@ -13,7 +13,6 @@ class AboutSection: UIView {
     
     @IBOutlet weak var heightLabel: UILabel!
     
-    
     @IBOutlet weak var weightLabel: UILabel!
     
     @IBOutlet weak var abilitiesLabel: UILabel!
@@ -26,28 +25,14 @@ class AboutSection: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        viewInit()
+        self.viewInit()
     }
     
     
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        viewInit()
-    }
-    
-    
-    func viewInit(){
-        let xibView = Bundle.main.loadNibNamed(Constants.Nib.aboutSection, owner: self, options: nil)![0] as! UIView
-        xibView.frame = self.bounds
-        addSubview(xibView)
-        
-        NSLayoutConstraint.activate([
-            xibView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            xibView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            xibView.topAnchor.constraint(equalTo: self.topAnchor),
-            xibView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
+        self.viewInit()
     }
     
     func configure(pokemon: PokemonDetailModel){
