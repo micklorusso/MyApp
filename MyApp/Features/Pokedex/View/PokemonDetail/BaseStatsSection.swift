@@ -28,8 +28,7 @@ class BaseStatsSection: UIView {
             horizontalStack.distribution = .fillEqually
             horizontalStack.spacing = 15
             horizontalStack.translatesAutoresizingMaskIntoConstraints = false
-            horizontalStack.heightAnchor.constraint(equalToConstant: 54)
-                .isActive = true
+
 
             let nameLabel = UILabel()
             nameLabel.text = stat.name
