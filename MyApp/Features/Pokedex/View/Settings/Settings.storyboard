@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings-->
+        <scene sceneID="VX9-VP-lly">
+            <objects>
+                <viewController storyboardIdentifier="Settings" id="Xda-UE-1xY" customClass="SettingsViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yzE-e1-U0C">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mxw-0v-Mro">
+                                <rect key="frame" x="0.0" y="59" width="393" height="216"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4d-gG-4hu">
+                                <rect key="frame" x="154" y="285" width="85" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Confirm">
+                                    <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="confirmButtonTapped:" destination="Xda-UE-1xY" eventType="touchUpInside" id="qn1-R9-j0J"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0J8-Vi-KZR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="T4d-gG-4hu" firstAttribute="top" secondItem="Mxw-0v-Mro" secondAttribute="bottom" constant="10" id="0HG-Uc-z3t"/>
+                            <constraint firstItem="Mxw-0v-Mro" firstAttribute="trailing" secondItem="0J8-Vi-KZR" secondAttribute="trailing" id="FsD-ol-yGw"/>
+                            <constraint firstItem="Mxw-0v-Mro" firstAttribute="leading" secondItem="0J8-Vi-KZR" secondAttribute="leading" id="G7T-oc-qIc"/>
+                            <constraint firstItem="Mxw-0v-Mro" firstAttribute="top" secondItem="0J8-Vi-KZR" secondAttribute="top" id="NBO-WA-pAv"/>
+                            <constraint firstItem="T4d-gG-4hu" firstAttribute="centerX" secondItem="yzE-e1-U0C" secondAttribute="centerX" id="X0n-hr-3gH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="HLB-gH-eM6"/>
+                    <connections>
+                        <outlet property="confirmButton" destination="T4d-gG-4hu" id="Yds-BH-z0X"/>
+                        <outlet property="languagePickerView" destination="Mxw-0v-Mro" id="3vV-b5-sie"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GUi-lu-sfm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052.6717557251909" y="769.71830985915494"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -26,6 +26,9 @@ class PokemonDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabSegmentedControl.setTitle("About".localized(), forSegmentAt: Section.about.rawValue)
+        tabSegmentedControl.setTitle("Base Stats".localized(), forSegmentAt: Section.baseStats.rawValue)
+        
         if let id = pokemonID{
             pokemonDetailManager = PokemonDetailManager(id: id)
             pokemonDetailManager!.pokemonDetailService.delegate = self

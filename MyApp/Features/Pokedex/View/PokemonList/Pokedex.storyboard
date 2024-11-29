@@ -11,13 +11,13 @@
         <!--Pokédex-->
         <scene sceneID="jJG-A7-FXT">
             <objects>
-                <viewController id="TVV-jF-D4D" customClass="PokedexViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Pokedex" id="TVV-jF-D4D" customClass="PokedexViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8YG-Db-kZv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7Fn-ki-80F">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -50,30 +50,8 @@
             </objects>
             <point key="canvasLocation" x="1884" y="-35"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="uGI-qC-oSf">
-            <objects>
-                <navigationController storyboardIdentifier="Pokedex" automaticallyAdjustsScrollViewInsets="NO" id="CcF-T7-XmD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="list.bullet" catalog="system" id="WaE-6y-YDe">
-                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yy2-PL-fox">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="TVV-jF-D4D" kind="relationship" relationship="rootViewController" id="Q6R-KJ-6kc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Kh-20-0YD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="list.bullet" catalog="system" width="128" height="87"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

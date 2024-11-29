@@ -36,4 +36,11 @@ struct Constants{
         "white": UIColor.white,
         "pink": UIColor.systemPink
     ]
+    
+    static let localizedStringsTable = "Localizable"
+    
+    struct Language{
+        static let languageKey = "AppLanguage"
+        static let defaultLanguage = "en"
+    }
 }
