@@ -43,4 +43,14 @@ struct Constants{
         static let languageKey = "AppLanguage"
         static let defaultLanguage = "en"
     }
+    
+    enum TabBarItems: Int {
+        case pokedex = 0
+        case settings = 1
+        case profile = 2
+    }
+    
+    struct Assets{
+        static let profilePlaceholder = "ProfilePlaceholder"
+    }
 }

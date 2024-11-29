@@ -39,6 +39,7 @@
                     <connections>
                         <segue destination="0Br-wj-uWO" kind="relationship" relationship="viewControllers" id="gYY-2F-ayz"/>
                         <segue destination="9St-ie-3Vb" kind="relationship" relationship="viewControllers" id="WyS-U1-UaZ"/>
+                        <segue destination="dHE-0n-grc" kind="relationship" relationship="viewControllers" id="Pd1-sQ-lUG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8wQ-Bt-2eZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -87,9 +88,41 @@
             </objects>
             <point key="canvasLocation" x="-48" y="732"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="3pQ-bf-45y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dHE-0n-grc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle.fill" catalog="system" id="1eR-2n-DxI">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RnI-03-Fay">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HfC-2r-rz7" kind="relationship" relationship="rootViewController" id="zdS-uY-1Ik"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cED-eW-pI7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-10" y="-711"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="TxW-Z8-Sfb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="Profile" id="HfC-2r-rz7" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ALt-cD-ug6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x0L-NC-h3T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="833" y="-711"/>
+        </scene>
     </scenes>
     <resources>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
+        <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
     </resources>
 </document>

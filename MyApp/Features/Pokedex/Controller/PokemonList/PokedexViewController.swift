@@ -12,17 +12,15 @@ class PokedexViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    enum TabBarItems: Int {
-        case pokedex = 0
-        case settings = 1
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let tabBarItems = self.tabBarController?.tabBar.items{
-            tabBarItems[TabBarItems.pokedex.rawValue].title = "Pokedex"
-            tabBarItems[TabBarItems.settings.rawValue].title = "Settings".localized()
+            tabBarItems[Constants.TabBarItems.pokedex.rawValue].title = "Pokedex"
+            tabBarItems[Constants.TabBarItems.settings.rawValue].title = "Settings".localized()
+            tabBarItems[Constants.TabBarItems.profile.rawValue].title = "Profile".localized()
         }
         
         tableView.delegate = self
