@@ -5,24 +5,55 @@
 //  Created by Lorusso, Michele on 22/11/24.
 //
 import Foundation
+import Alamofire
 
 
 class PokemonApi{
 
+    class RetryHandler: RequestInterceptor, @unchecked Sendable{
+        let retryLimit = 3
+        let retryDelay: TimeInterval = 2.0
 
-    func performRequest<T: Decodable>(with url: URL) async throws -> T {
-        let session = URLSession(configuration: .default)
-        let (data, _) = try await session.data(from: url)
-        return try parseJSON(pokemonData: data)
-    }
+        func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
 
-    func parseJSON<T: Decodable>(pokemonData: Data) throws -> T {
-        let decoder = JSONDecoder()
-        do {
-            let decodedData = try decoder.decode(T.self, from: pokemonData)
-            return decodedData
-        } catch {
-            throw NSError(domain: "DecodingError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to decode JSON: \(error)"])
+            if request.retryCount < retryLimit {
+                DispatchQueue.global().asyncAfter(deadline: .now() + retryDelay) {
+                    completion(.retry)
+                }
+            } else {
+                completion(.doNotRetry)
+            }
         }
     }
+
+    class NetworkLogger: EventMonitor, @unchecked Sendable {
+        func requestDidResume(_ request: Request) {
+            print("Request started: \(request.description)")
+        }
+        
+        func request<Value>(_ request: DataRequest, didParseResponse response: DataResponse<Value, AFError>) {
+            print("Response: \(response.debugDescription)")
+        }
+    }
+
+    func performRequest<T: Decodable>(with url: URL) async throws -> T {
+
+        let session = Session(interceptor: RetryHandler(), eventMonitors: [NetworkLogger()])
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            session.request(url)
+                .validate()
+                .responseDecodable(of: T.self) { response in
+                    switch response.result {
+                    case .success(let decodedData):
+                        continuation.resume(returning: decodedData)
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+
+
 }
+
