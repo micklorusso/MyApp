@@ -10,14 +10,14 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     lazy var contentView = ProfileView()
+    let profileManager = ProfileManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         contentView.delegate = self
-        contentView.configureProfile(
-            image: UIImage(named: Constants.Assets.profilePlaceholder),
-            firstName: "Michele", lastName: "Lorusso", birthDate: "31/01/2003")
+        contentView.setProfileImage(profileManager.getProfileImage())
+        contentView.configureProfile(with: profileManager.getProfile())
         view = contentView
 
     }
@@ -27,6 +27,17 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: ProfileViewDelegate,
     UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
+    func didUpdateField(fieldType: ProfileFieldType, value: String) {
+        switch fieldType {
+        case .name:
+            profileManager.changeProfileName(name: value)
+        case .lastName:
+            profileManager.changeProfileLastName(lastName: value)
+        case .dateOfBirth:
+            profileManager.changeProfileDateOfBirth(dateOfBirth: value)
+        }
+    }
+
     func didTapProfileImage() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -34,16 +45,21 @@ extension ProfileViewController: ProfileViewDelegate,
 
         present(imagePickerController, animated: true, completion: nil)
     }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let selectedImage = info[.originalImage] as? UIImage {
-                contentView.setProfileImage(selectedImage)
-            }
-            picker.dismiss(animated: true, completion: nil)
+
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey:
+            Any]
+    ) {
+        if let imageURL = info[.imageURL] as? URL {
+            profileManager.changeProfileImage(imageURL: imageURL)
+            contentView.setProfileImage(profileManager.getProfileImage())
         }
-        
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            picker.dismiss(animated: true, completion: nil)
-        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
 
 }

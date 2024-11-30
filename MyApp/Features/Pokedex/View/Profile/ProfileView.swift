@@ -9,6 +9,13 @@ import UIKit
 
 protocol ProfileViewDelegate {
     func didTapProfileImage()
+    func didUpdateField(fieldType: ProfileFieldType, value: String)
+}
+
+enum ProfileFieldType {
+    case name
+    case lastName
+    case dateOfBirth
 }
 
 class ProfileView: UIView {
@@ -75,6 +82,36 @@ class ProfileView: UIView {
         textField.keyboardType = .numbersAndPunctuation
         return textField
     }()
+    
+    private let datePicker = UIDatePicker()
+    
+    private func setupDatePicker() {
+        datePicker.locale = Locale(identifier: LanguageManager.getCurrentLanguageCode())
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.maximumDate = Date()
+        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)), for: .valueChanged)
+
+        birthdateTextField.inputView = datePicker
+
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
+        toolbar.setItems([doneButton], animated: true)
+        birthdateTextField.inputAccessoryView = toolbar
+    }
+
+    @objc private func datePickerChanged(_ sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        birthdateTextField.text = formatter.string(from: sender.date)
+    }
+
+    @objc private func doneButtonTapped() {
+        birthdateTextField.resignFirstResponder()
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -88,6 +125,7 @@ class ProfileView: UIView {
 
     private func setupView() {
         setupDelegates()
+        setupDatePicker()
         setupProfileImageView()
 
         addSubview(scrollView)
@@ -152,12 +190,11 @@ class ProfileView: UIView {
     }
 
     func configureProfile(
-        image: UIImage?, firstName: String, lastName: String, birthDate: String
+        with profile: UserProfile
     ) {
-        profileImageView.image = image
-        nameTextField.text = firstName
-        surnameTextField.text = lastName
-        birthdateTextField.text = birthDate
+        nameTextField.text = profile.name
+        surnameTextField.text = profile.lastName
+        birthdateTextField.text = profile.dateOfBirth
     }
 }
 
@@ -179,6 +216,21 @@ extension ProfileView: UITextFieldDelegate {
             return false
         } else {
             return true
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField{
+        case nameTextField:
+            delegate?.didUpdateField(fieldType: .name, value: textField.text ?? "")
+        case surnameTextField:
+            delegate?.didUpdateField(
+                fieldType: .lastName, value: textField.text ?? "")
+        case birthdateTextField:
+            delegate?.didUpdateField(
+                fieldType: .dateOfBirth, value: textField.text ?? "")
+        default:
+            print("Text field ended editing but the corresponding didUpdateField was not called, add it to the switch in textFieldDidEndEditing")
         }
     }
 }

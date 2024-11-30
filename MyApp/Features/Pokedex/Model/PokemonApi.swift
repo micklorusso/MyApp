@@ -36,9 +36,12 @@ class PokemonApi{
         }
     }
 
-    func performRequest<T: Decodable>(with url: URL) async throws -> T {
-
-        let session = Session(interceptor: RetryHandler(), eventMonitors: [NetworkLogger()])
+    func performRequest<T: Decodable>(with url: URL, logEvents: Bool = false) async throws -> T {
+        var eventMonitors: [EventMonitor] = []
+        if(logEvents){
+            eventMonitors.append(NetworkLogger())
+        }
+        let session = Session(interceptor: RetryHandler(), eventMonitors: eventMonitors)
         
         return try await withCheckedThrowingContinuation { continuation in
             session.request(url)

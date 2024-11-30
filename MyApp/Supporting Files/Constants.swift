@@ -23,6 +23,10 @@ struct Constants{
     struct Segue{
         static let pokedexToDetail = "PokedexToDetail"
     }
+    struct LocalStorage{
+        static let userProfile = "UserProfile"
+        static let profileImageName = "profileImage"
+    }
     
     static let pokedexColorMap =  [
         "red": UIColor.red,

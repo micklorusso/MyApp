@@ -22,6 +22,10 @@ class LanguageManager {
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
     }
+    
+    static func getCurrentLanguageCode() -> String{
+        UserDefaults.standard.string(forKey: Constants.Language.languageKey) ?? Constants.Language.defaultLanguage
+    }
 }
 
 extension Bundle {
@@ -31,7 +35,7 @@ extension Bundle {
 
     class LocalizedBundle: Bundle,  @unchecked Sendable {
         override func localizedString(forKey key: String, value: String?, table tableName: String?) -> String {
-            let languageCode = UserDefaults.standard.string(forKey: Constants.Language.languageKey) ?? Constants.Language.defaultLanguage
+            let languageCode = LanguageManager.getCurrentLanguageCode()
             let bundle = Bundle(path: Bundle.main.path(forResource: languageCode, ofType: "lproj")!) ?? self
             return bundle.localizedString(forKey: key, value: value, table: tableName)
         }
