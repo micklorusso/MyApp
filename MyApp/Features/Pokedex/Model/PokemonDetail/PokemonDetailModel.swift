@@ -20,7 +20,6 @@ struct PokemonDetailModel{
     var eggGroups: [String] = []
     var stats: [Stathistic] = []
     var color: UIColor?
-    var isFavourite: Bool?
     
     init(pokemonDetail: PokemonDetail, pokemonSpecies: PokemonSpecies){
         self.name = pokemonDetail.name
@@ -30,11 +29,7 @@ struct PokemonDetailModel{
                 types.append(pokemonType.type.name)
             }
         }
-        if let id = pokemonDetail.id{
-            self.id = "#\(String(format: "%03d", id))"
-        } else{
-            self.id = nil
-        }
+        self.id = FavouritesManager.convertID(pokemonID: pokemonDetail.id)
         
         for species in pokemonSpecies.genera{
             if species.language.name == "en"{
@@ -85,10 +80,7 @@ struct PokemonDetailModel{
         }
         
         self.color = Constants.pokedexColorMap[pokemonSpecies.color.name]
-        
-        if let pokemonID = self.id{
-            self.isFavourite = FavouritesManager.shared.isFavourite(pokemonID: pokemonID)
-        }
+    
     }
 }
 

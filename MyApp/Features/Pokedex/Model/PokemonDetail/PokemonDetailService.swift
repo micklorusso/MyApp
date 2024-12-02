@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol PokemonDetailDelegate {
+protocol PokemonDetailServiceDelegate {
     func didUpdatePokemonDetail(_ pokemonApi: PokemonDetailService, pokemon: PokemonDetailModel)
     func didFailWithError(_ error: Error)
 }
 
 
 class PokemonDetailService: PokemonApi{
-    var delegate: PokemonDetailDelegate?
+    var delegate: PokemonDetailServiceDelegate?
     
     func fetchData(with id: Int) async {
         

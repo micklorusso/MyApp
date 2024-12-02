@@ -10,7 +10,7 @@ import Foundation
 class FavouritesManager {
     static let shared = FavouritesManager()
 
-    private var favourites: Set<String> = []
+    @Published private(set) var favourites: Set<String> = []
 
     init() {
         loadFavourites()
@@ -53,5 +53,12 @@ class FavouritesManager {
         {
             favourites = Set(savedFavourites)
         }
+    }
+    
+    static func convertID(pokemonID: Int?) -> String?{
+        if let id = pokemonID{
+            return "#\(String(format: "%03d", id))"
+        }
+        return nil
     }
 }

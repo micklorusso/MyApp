@@ -53,7 +53,7 @@ class PokemonDetailViewController: UIViewController {
     }
 }
 
-extension PokemonDetailViewController: PokemonDetailDelegate {
+extension PokemonDetailViewController: PokemonDetailServiceDelegate {
     func didUpdatePokemonDetail(_ pokemonApi: PokemonDetailService, pokemon: PokemonDetailModel) {
         pokemonDetailManager?.pokemonDetail = pokemon
         

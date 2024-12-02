@@ -41,8 +41,8 @@ public class DisplaySection: UIView {
         idLabel.text = pokemon.id
         Util.loadImage(imageStr: pokemon.image, in: pokemonImageView)
         Util.loadTypes(types: pokemon.types, in: typesStackView, labelColor: .white)
-        if let isFavourite = pokemon.isFavourite{
-            toggleFavouriteIcon(isFavourite: isFavourite)
+        if let pokemonID = pokemon.id{
+            toggleFavouriteIcon(isFavourite: FavouritesManager.shared.isFavourite(pokemonID: pokemonID))
         }
     }
     

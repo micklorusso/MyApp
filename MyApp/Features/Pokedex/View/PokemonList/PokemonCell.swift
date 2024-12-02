@@ -16,6 +16,8 @@ class PokemonCell: UITableViewCell {
     
     @IBOutlet weak var typesStackView: UIStackView!
     
+    @IBOutlet weak var favouriteButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

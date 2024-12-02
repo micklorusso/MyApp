@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class PokedexViewController: UIViewController {
     let pokedexManger = PokedexManager()
+    private var cancellables: Set<AnyCancellable> = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,6 +31,13 @@ class PokedexViewController: UIViewController {
         
         pokedexManger.pokemonListService.delegate = self
         pokedexManger.loadPokemon()
+        
+        FavouritesManager.shared.$favourites
+                   .receive(on: DispatchQueue.main)
+                   .sink { [weak self] _ in
+                       self?.tableView.reloadData()
+                   }
+                   .store(in: &cancellables)
     }
     
 }
@@ -42,6 +51,9 @@ extension PokedexViewController: UITableViewDataSource{
         let pokemon = pokedexManger.getPokemon(at: indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cells.pokemonCellIdentifier, for: indexPath) as! PokemonCell
         cell.configure(with: pokemon)
+        if let pokemonID = FavouritesManager.convertID(pokemonID: pokemon.id){
+            cell.favouriteButton.isHidden = !FavouritesManager.shared.isFavourite(pokemonID: pokemonID)
+        }
         return cell
     }
 }
@@ -80,3 +92,4 @@ extension PokedexViewController: PokemonListDelegate{
     
     
 }
+

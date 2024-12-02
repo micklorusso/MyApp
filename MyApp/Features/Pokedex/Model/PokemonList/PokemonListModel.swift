@@ -24,6 +24,7 @@ struct PokemonListModel{
         }
         self.order = pokemonDetail.order
         self.id = pokemonDetail.id
+        
     }
     
 }
