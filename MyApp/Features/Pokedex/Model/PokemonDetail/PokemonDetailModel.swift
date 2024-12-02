@@ -11,7 +11,7 @@ struct PokemonDetailModel{
     let name: String?
     var types: [String] = []
     let image: String?
-    let id: String?
+    let id: Int?
     var species: String?
     let height: String?
     let weight: String?
@@ -29,7 +29,7 @@ struct PokemonDetailModel{
                 types.append(pokemonType.type.name)
             }
         }
-        self.id = FavouritesManager.convertID(pokemonID: pokemonDetail.id)
+        self.id = pokemonDetail.id
         
         for species in pokemonSpecies.genera{
             if species.language.name == "en"{

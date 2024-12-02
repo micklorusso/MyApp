@@ -65,7 +65,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5A-7c-BD6">
-                    <rect key="frame" x="631" y="74" width="69.5" height="36"/>
+                    <rect key="frame" x="630.5" y="74" width="69.5" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -85,7 +85,7 @@
                 <constraint firstItem="egv-4I-l3N" firstAttribute="leading" secondItem="QTO-Pq-xYT" secondAttribute="leading" constant="20" id="izy-ZJ-0ih"/>
                 <constraint firstItem="egv-4I-l3N" firstAttribute="top" secondItem="QTO-Pq-xYT" secondAttribute="top" constant="10" id="nVJ-px-4jm"/>
                 <constraint firstAttribute="trailing" secondItem="FGL-PK-Are" secondAttribute="trailing" id="q9M-tR-rSW"/>
-                <constraint firstAttribute="trailing" secondItem="a5A-7c-BD6" secondAttribute="trailing" constant="9.5" id="rVk-kl-6QX"/>
+                <constraint firstAttribute="trailing" secondItem="a5A-7c-BD6" secondAttribute="trailing" constant="10" id="rVk-kl-6QX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-289.60000000000002" y="-315.74212893553226"/>

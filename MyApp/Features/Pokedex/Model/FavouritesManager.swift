@@ -10,17 +10,17 @@ import Foundation
 class FavouritesManager {
     static let shared = FavouritesManager()
 
-    @Published private(set) var favourites: Set<String> = []
+    @Published var favourites: Set<Int> = []
 
     init() {
         loadFavourites()
     }
 
-    func isFavourite(pokemonID: String) -> Bool {
+    func isFavourite(pokemonID: Int) -> Bool {
         return favourites.contains(pokemonID)
     }
 
-    func toggleFavourite(pokemonID: String) {
+    func toggleFavourite(pokemonID: Int) {
         if isFavourite(pokemonID: pokemonID) {
             removeFavourite(pokemonID: pokemonID)
         } else {
@@ -28,18 +28,14 @@ class FavouritesManager {
         }
     }
 
-    private func addFavourite(pokemonID: String) {
+    private func addFavourite(pokemonID: Int) {
         favourites.insert(pokemonID)
         saveFavourites()
     }
 
-    private func removeFavourite(pokemonID: String) {
+    private func removeFavourite(pokemonID: Int) {
         favourites.remove(pokemonID)
         saveFavourites()
-    }
-
-    func getFavourites() -> [String] {
-        return Array(favourites)
     }
 
     private func saveFavourites() {
@@ -49,16 +45,10 @@ class FavouritesManager {
 
     private func loadFavourites() {
         if let savedFavourites = UserDefaults.standard.array(
-            forKey: Constants.LocalStorage.favouritesKey) as? [String]
+            forKey: Constants.LocalStorage.favouritesKey) as? [Int]
         {
             favourites = Set(savedFavourites)
         }
     }
     
-    static func convertID(pokemonID: Int?) -> String?{
-        if let id = pokemonID{
-            return "#\(String(format: "%03d", id))"
-        }
-        return nil
-    }
 }

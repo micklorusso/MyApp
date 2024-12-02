@@ -18,6 +18,8 @@ struct Constants{
     struct Cells{
         static let pokemonCellIdentifier = "ReusablePokemonCell"
         static let pokemonCellNibName = "PokemonCell"
+        static let favouritePokemonCellIdentifier = "ReusableFavouriteCell"
+        static let favouritePokemonCellNibName = "FavouritePokemonCell"
     }
     
     struct Segue{

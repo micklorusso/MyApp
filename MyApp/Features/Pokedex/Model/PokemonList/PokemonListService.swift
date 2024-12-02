@@ -6,13 +6,15 @@
 //
 import Foundation
 
-protocol PokemonListDelegate{
+protocol PokemonListServiceDelegate{
     func didUpdatePokemonList(_ pokemonApi: PokemonApi, pokemon: [PokemonListModel])
     func didFailWithError(_ error: Error)
 }
 
+
+
 class PokemonListService: PokemonApi {
-    var delegate: PokemonListDelegate?
+    var delegate: PokemonListServiceDelegate?
 
     func fetchData(offset: Int) async {
         let stringUrl = "\(Constants.apiURL)\(Constants.Routes.pokemonList)\(offset)"

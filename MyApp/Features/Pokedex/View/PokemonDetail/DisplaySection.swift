@@ -38,10 +38,10 @@ public class DisplaySection: UIView {
     func configure(pokemon: PokemonDetailModel){
         contentView.backgroundColor = pokemon.color
         nameLabel.text = pokemon.name
-        idLabel.text = pokemon.id
         Util.loadImage(imageStr: pokemon.image, in: pokemonImageView)
         Util.loadTypes(types: pokemon.types, in: typesStackView, labelColor: .white)
         if let pokemonID = pokemon.id{
+            idLabel.text = "#\(String(format: "%03d", pokemonID))"
             toggleFavouriteIcon(isFavourite: FavouritesManager.shared.isFavourite(pokemonID: pokemonID))
         }
     }

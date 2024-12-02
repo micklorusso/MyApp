@@ -83,21 +83,76 @@ class ProfileView: UIView {
         return textField
     }()
     
-    private let datePicker = UIDatePicker()
+    private let favouritesLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
     
+    func setFavouriteLabelText(numberOfPokemon: Int){
+        if numberOfPokemon > 0{
+            favouritesLabel.font = UIFont.boldSystemFont(ofSize: 30)
+            favouritesLabel.text = "Favourites"
+        } else{
+            favouritesLabel.font = UIFont.systemFont(ofSize: 30)
+            favouritesLabel.text = "You don't have any favourite pokemon yet"
+        }
+    }
+
+    let favouritesCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 100, height: 100)
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+
+        var collectionView = UICollectionView(
+            frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        collectionView.register(
+            UINib(nibName: Constants.Cells.favouritePokemonCellNibName, bundle: nil),
+            forCellWithReuseIdentifier: Constants.Cells.favouritePokemonCellIdentifier)
+
+        return collectionView
+    }()
+    
+    func changeColumns(to numberOfColumns: Int) {
+        guard let layout = favouritesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+
+        let spacing: CGFloat = 8
+        let totalSpacing = spacing * CGFloat(numberOfColumns - 1)
+        let availableWidth = favouritesCollectionView.bounds.width - totalSpacing
+        let itemWidth = availableWidth / CGFloat(numberOfColumns)
+
+        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
+        layout.minimumInteritemSpacing = spacing
+        layout.minimumLineSpacing = spacing
+        layout.invalidateLayout()
+    }
+
+    private let datePicker = UIDatePicker()
+
     private func setupDatePicker() {
-        datePicker.locale = Locale(identifier: LanguageManager.getCurrentLanguageCode())
+        datePicker.locale = Locale(
+            identifier: LanguageManager.getCurrentLanguageCode())
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.maximumDate = Date()
-        datePicker.addTarget(self, action: #selector(datePickerChanged(_:)), for: .valueChanged)
+        datePicker.addTarget(
+            self, action: #selector(datePickerChanged(_:)), for: .valueChanged)
 
         birthdateTextField.inputView = datePicker
 
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
 
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
+        let doneButton = UIBarButtonItem(
+            barButtonSystemItem: .done, target: self,
+            action: #selector(doneButtonTapped))
         toolbar.setItems([doneButton], animated: true)
         birthdateTextField.inputAccessoryView = toolbar
     }
@@ -135,6 +190,8 @@ class ProfileView: UIView {
         contentView.addSubview(nameTextField)
         contentView.addSubview(surnameTextField)
         contentView.addSubview(birthdateTextField)
+        contentView.addSubview(favouritesLabel)
+        contentView.addSubview(favouritesCollectionView)
 
         NSLayoutConstraint.activate([
             // ScrollView
@@ -184,8 +241,18 @@ class ProfileView: UIView {
                 equalTo: contentView.leadingAnchor, constant: 20),
             birthdateTextField.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor, constant: -20),
-            birthdateTextField.bottomAnchor.constraint(
-                equalTo: contentView.bottomAnchor, constant: -40),
+            
+            // Favourites Label
+            favouritesLabel.topAnchor.constraint(equalTo: birthdateTextField.bottomAnchor, constant: 20),
+            favouritesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            favouritesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            
+            // Favourites CollectionView
+            favouritesCollectionView.topAnchor.constraint(equalTo: favouritesLabel.bottomAnchor, constant: 10),
+            favouritesCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            favouritesCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            favouritesCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            favouritesCollectionView.heightAnchor.constraint(greaterThanOrEqualToConstant: 200)
         ])
     }
 
@@ -220,9 +287,10 @@ extension ProfileView: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        switch textField{
+        switch textField {
         case nameTextField:
-            delegate?.didUpdateField(fieldType: .name, value: textField.text ?? "")
+            delegate?.didUpdateField(
+                fieldType: .name, value: textField.text ?? "")
         case surnameTextField:
             delegate?.didUpdateField(
                 fieldType: .lastName, value: textField.text ?? "")
@@ -230,13 +298,10 @@ extension ProfileView: UITextFieldDelegate {
             delegate?.didUpdateField(
                 fieldType: .dateOfBirth, value: textField.text ?? "")
         default:
-            print("Text field ended editing but the corresponding didUpdateField was not called, add it to the switch in textFieldDidEndEditing")
+            print(
+                "Text field ended editing but the corresponding didUpdateField was not called, add it to the switch in textFieldDidEndEditing"
+            )
         }
     }
 }
 
-extension ProfileView: UIImagePickerControllerDelegate,
-    UINavigationControllerDelegate
-{
-
-}

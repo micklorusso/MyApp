@@ -51,7 +51,7 @@ extension PokedexViewController: UITableViewDataSource{
         let pokemon = pokedexManger.getPokemon(at: indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cells.pokemonCellIdentifier, for: indexPath) as! PokemonCell
         cell.configure(with: pokemon)
-        if let pokemonID = FavouritesManager.convertID(pokemonID: pokemon.id){
+        if let pokemonID = pokemon.id{
             cell.favouriteButton.isHidden = !FavouritesManager.shared.isFavourite(pokemonID: pokemonID)
         }
         return cell
@@ -78,10 +78,10 @@ extension PokedexViewController: UITableViewDelegate{
     }
 }
 
-extension PokedexViewController: PokemonListDelegate{
+extension PokedexViewController: PokemonListServiceDelegate{
     func didUpdatePokemonList(_ pokemonApi: PokemonApi, pokemon: [PokemonListModel]) {
+        self.pokedexManger.addPokemon(pokemon)
         DispatchQueue.main.async{
-            self.pokedexManger.addPokemon(pokemon)
             self.tableView.reloadData()
         }
     }

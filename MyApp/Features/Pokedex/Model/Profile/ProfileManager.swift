@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 class ProfileManager {
+    var favouritePokemon: [PokemonListModel] = []
+    let favouritesService = FavouritesService()
+
     private var profile: UserProfile = UserProfile(
         name: "", lastName: "", dateOfBirth: "", profileImagePath: nil)
     {
@@ -23,31 +26,52 @@ class ProfileManager {
     init() {
         loadProfile()
     }
-    
-    //getters
-    func getProfile() -> UserProfile{
-        return profile
+
+    func loadFavourites() {
+        Task {
+            await favouritesService.fetchData(
+                forIds: Array(FavouritesManager.shared.favourites))
+        }
     }
     
+    func addFavourites(_ pokemon: [PokemonListModel]) {
+        favouritePokemon.removeAll()
+        favouritePokemon.append(contentsOf: pokemon)
+        favouritePokemon.sort {
+            if let firstItemPos = $0.order, let secondItemPos = $1.order {
+                return firstItemPos < secondItemPos
+            } else {
+                return false
+            }
+        }
+    }
+
+    //getters
+    func getProfile() -> UserProfile {
+        return profile
+    }
+
     func getProfileImage() -> UIImage {
         if let profileImagePath = profile.profileImagePath,
-           FileManager.default.fileExists(atPath: profileImagePath) {
-            return UIImage(contentsOfFile: profileImagePath) ?? UIImage(named: Constants.Assets.profilePlaceholder)!
+            FileManager.default.fileExists(atPath: profileImagePath)
+        {
+            return UIImage(contentsOfFile: profileImagePath) ?? UIImage(
+                named: Constants.Assets.profilePlaceholder)!
         } else {
             return UIImage(named: Constants.Assets.profilePlaceholder)!
         }
     }
-    
+
     //setters
-    func changeProfileName(name: String){
-        profile.name =  name
+    func changeProfileName(name: String) {
+        profile.name = name
     }
-    
-    func changeProfileLastName(lastName: String){
+
+    func changeProfileLastName(lastName: String) {
         profile.lastName = lastName
     }
-    
-    func changeProfileDateOfBirth(dateOfBirth: String){
+
+    func changeProfileDateOfBirth(dateOfBirth: String) {
         profile.dateOfBirth = dateOfBirth
     }
 
