@@ -32,6 +32,7 @@ class PokemonDetailViewController: UIViewController {
         if let id = pokemonID{
             pokemonDetailManager = PokemonDetailManager(id: id)
             pokemonDetailManager!.pokemonDetailService.delegate = self
+            displaySection.delegate = self
             tabSegmentedControl.selectedSegmentIndex = 0
             tabChanged(tabSegmentedControl)
         }
@@ -52,9 +53,6 @@ class PokemonDetailViewController: UIViewController {
     }
 }
 
-
-
-
 extension PokemonDetailViewController: PokemonDetailDelegate {
     func didUpdatePokemonDetail(_ pokemonApi: PokemonDetailService, pokemon: PokemonDetailModel) {
         pokemonDetailManager?.pokemonDetail = pokemon
@@ -70,4 +68,13 @@ extension PokemonDetailViewController: PokemonDetailDelegate {
         print(error)
     }
 
+}
+
+extension PokemonDetailViewController: DisplaySectionDelegate{
+    func favouriteButtonTapped() {
+        if let pokemonID = pokemonDetailManager?.pokemonDetail?.id {
+            FavouritesManager.shared.toggleFavourite(pokemonID: pokemonID)
+            displaySection.toggleFavouriteIcon(isFavourite: FavouritesManager.shared.isFavourite(pokemonID: pokemonID))
+        }
+    }
 }

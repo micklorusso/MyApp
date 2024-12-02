@@ -20,6 +20,7 @@ struct PokemonDetailModel{
     var eggGroups: [String] = []
     var stats: [Stathistic] = []
     var color: UIColor?
+    var isFavourite: Bool?
     
     init(pokemonDetail: PokemonDetail, pokemonSpecies: PokemonSpecies){
         self.name = pokemonDetail.name
@@ -84,6 +85,10 @@ struct PokemonDetailModel{
         }
         
         self.color = Constants.pokedexColorMap[pokemonSpecies.color.name]
+        
+        if let pokemonID = self.id{
+            self.isFavourite = FavouritesManager.shared.isFavourite(pokemonID: pokemonID)
+        }
     }
 }
 

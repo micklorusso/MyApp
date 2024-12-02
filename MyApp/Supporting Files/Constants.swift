@@ -26,6 +26,7 @@ struct Constants{
     struct LocalStorage{
         static let userProfile = "UserProfile"
         static let profileImageName = "profileImage"
+        static let favouritesKey = "FavouritePokemon"
     }
     
     static let pokedexColorMap =  [

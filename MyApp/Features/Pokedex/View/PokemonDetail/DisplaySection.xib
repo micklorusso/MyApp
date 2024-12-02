@@ -3,6 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DisplaySection" customModule="MyApp" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="QTO-Pq-xYT" id="vOz-Nx-7Wx"/>
+                <outlet property="favouriteButton" destination="JgV-lH-wPG" id="A2i-Xs-6tR"/>
                 <outlet property="idLabel" destination="a5A-7c-BD6" id="JK2-Q8-bev"/>
                 <outlet property="nameLabel" destination="egv-4I-l3N" id="cre-Fu-is3"/>
                 <outlet property="pokemonImageView" destination="FGL-PK-Are" id="LLa-he-1pa"/>
@@ -47,8 +49,23 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FGL-PK-Are">
                     <rect key="frame" x="0.0" y="114" width="710" height="428"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgV-lH-wPG">
+                    <rect key="frame" x="640" y="20" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="Fzt-ho-hjq"/>
+                        <constraint firstAttribute="height" constant="50" id="IO7-Pi-MTl"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain">
+                        <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                        <color key="baseForegroundColor" red="0.55686277149999996" green="0.1607843041" blue="0.14509806040000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="favouriteButtonTapped:" destination="-1" eventType="touchUpInside" id="26V-fG-a0W"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5A-7c-BD6">
-                    <rect key="frame" x="620.5" y="30" width="69.5" height="36"/>
+                    <rect key="frame" x="631" y="74" width="69.5" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -59,21 +76,25 @@
                 <constraint firstAttribute="bottom" secondItem="FGL-PK-Are" secondAttribute="bottom" id="54w-Pd-ZOh"/>
                 <constraint firstItem="QoB-Uj-Ojh" firstAttribute="top" secondItem="egv-4I-l3N" secondAttribute="bottom" constant="10" id="7MQ-AA-fR2"/>
                 <constraint firstItem="FGL-PK-Are" firstAttribute="leading" secondItem="QTO-Pq-xYT" secondAttribute="leading" id="7Vt-zZ-8Qz"/>
+                <constraint firstItem="a5A-7c-BD6" firstAttribute="top" secondItem="JgV-lH-wPG" secondAttribute="bottom" constant="4" id="BS6-El-TDm"/>
+                <constraint firstItem="JgV-lH-wPG" firstAttribute="top" secondItem="QTO-Pq-xYT" secondAttribute="top" constant="20" id="Dkb-aN-23K"/>
                 <constraint firstItem="FGL-PK-Are" firstAttribute="top" secondItem="QoB-Uj-Ojh" secondAttribute="bottom" constant="10" id="Hrt-z1-h98"/>
-                <constraint firstAttribute="trailing" secondItem="a5A-7c-BD6" secondAttribute="trailing" constant="20" id="KqO-ra-1MP"/>
+                <constraint firstAttribute="trailing" secondItem="JgV-lH-wPG" secondAttribute="trailing" constant="20" id="Nmp-Ug-yrI"/>
                 <constraint firstItem="QoB-Uj-Ojh" firstAttribute="leading" secondItem="QTO-Pq-xYT" secondAttribute="leading" constant="20" id="Y9d-Sv-txS"/>
-                <constraint firstItem="a5A-7c-BD6" firstAttribute="top" secondItem="QTO-Pq-xYT" secondAttribute="top" constant="30" id="cHl-Dz-qZh"/>
+                <constraint firstItem="FGL-PK-Are" firstAttribute="top" secondItem="a5A-7c-BD6" secondAttribute="bottom" constant="4" id="hjL-xq-H7r"/>
                 <constraint firstItem="egv-4I-l3N" firstAttribute="leading" secondItem="QTO-Pq-xYT" secondAttribute="leading" constant="20" id="izy-ZJ-0ih"/>
                 <constraint firstItem="egv-4I-l3N" firstAttribute="top" secondItem="QTO-Pq-xYT" secondAttribute="top" constant="10" id="nVJ-px-4jm"/>
                 <constraint firstAttribute="trailing" secondItem="FGL-PK-Are" secondAttribute="trailing" id="q9M-tR-rSW"/>
+                <constraint firstAttribute="trailing" secondItem="a5A-7c-BD6" secondAttribute="trailing" constant="9.5" id="rVk-kl-6QX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-289.60000000000002" y="-315.74212893553226"/>
         </view>
     </objects>
     <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
