@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class Util{
     
@@ -44,3 +45,4 @@ class Util{
     }
     
 }
+

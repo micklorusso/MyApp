@@ -18,13 +18,7 @@ class PokedexViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let tabBarItems = self.tabBarController?.tabBar.items{
-            tabBarItems[Constants.TabBarItems.pokedex.rawValue].title = "Pokedex"
-            tabBarItems[Constants.TabBarItems.settings.rawValue].title = "Settings".localized()
-            tabBarItems[Constants.TabBarItems.profile.rawValue].title = "Profile".localized()
-        }
-        
+                
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: Constants.Cells.pokemonCellNibName, bundle: nil), forCellReuseIdentifier: Constants.Cells.pokemonCellIdentifier)

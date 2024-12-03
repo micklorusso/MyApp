@@ -25,6 +25,15 @@ struct Constants{
     struct Segue{
         static let pokedexToDetail = "PokedexToDetail"
     }
+    
+    struct StoryboardID{
+        static let authentication = "Authentication"
+    }
+    
+    struct Storyboards{
+        static let authentication = "Authentication"
+    }
+    
     struct LocalStorage{
         static let userProfile = "UserProfile"
         static let profileImageName = "profileImage"
@@ -49,12 +58,6 @@ struct Constants{
     struct Language{
         static let languageKey = "AppLanguage"
         static let defaultLanguage = "en"
-    }
-    
-    enum TabBarItems: Int {
-        case pokedex = 0
-        case settings = 1
-        case profile = 2
     }
     
     struct Assets{

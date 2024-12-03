@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		055AD4662CFEFE42009BE6A6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 055AD4652CFEFE42009BE6A6 /* Alamofire */; };
+		055AD46D2CFF0EF5009BE6A6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 055AD46C2CFF0EF5009BE6A6 /* FirebaseAuth */; };
+		055AD46F2CFF0EF5009BE6A6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 055AD46E2CFF0EF5009BE6A6 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				055AD4662CFEFE42009BE6A6 /* Alamofire in Frameworks */,
+				055AD46D2CFF0EF5009BE6A6 /* FirebaseAuth in Frameworks */,
+				055AD46F2CFF0EF5009BE6A6 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +222,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				055AD3ED2CFEFC17009BE6A6 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				055AD46B2CFF0EF5009BE6A6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 055850372CF090A3006401F5 /* Products */;
@@ -594,6 +599,14 @@
 				minimumVersion = 5.10.2;
 			};
 		};
+		055AD46B2CFF0EF5009BE6A6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -601,6 +614,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 055AD3ED2CFEFC17009BE6A6 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		055AD46C2CFF0EF5009BE6A6 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 055AD46B2CFF0EF5009BE6A6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		055AD46E2CFF0EF5009BE6A6 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 055AD46B2CFF0EF5009BE6A6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

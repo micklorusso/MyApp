@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="833" y="732"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="YeM-pK-igC">
             <objects>
-                <tabBarController id="QFf-0X-nxp" sceneMemberID="viewController">
+                <tabBarController id="QFf-0X-nxp" customClass="MainTabBarController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="top" insetsLayoutMarginsFromSafeArea="NO" id="xA9-4z-DgP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
