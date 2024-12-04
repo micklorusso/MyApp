@@ -5,8 +5,8 @@
 //  Created by Lorusso, Michele on 29/11/24.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 class ProfileViewController: UIViewController {
 
@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         contentView.favouritesCollectionView.dataSource = self
         profileManager.favouritesService.delegate = self
 
@@ -27,12 +27,24 @@ class ProfileViewController: UIViewController {
                 self?.profileManager.loadFavourites()
             }
             .store(in: &cancellables)
-        
+
+        profileManager.$isLoading
+            .subscribe(on: DispatchQueue.global(qos: .userInitiated))
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                if isLoading {
+                    self?.contentView.activityIndicator.startAnimating()
+                } else {
+                    self?.contentView.activityIndicator.stopAnimating()
+                }
+            }
+            .store(in: &cancellables)
+
         contentView.delegate = self
         contentView.setProfileImage(profileManager.getProfileImage())
         contentView.configureProfile(with: profileManager.getProfile())
         view = contentView
-        
+
         profileManager.loadFavourites()
 
     }
@@ -80,37 +92,45 @@ extension ProfileViewController: ProfileViewDelegate,
 }
 
 extension ProfileViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView, numberOfItemsInSection section: Int
+    ) -> Int {
         return profileManager.favouritePokemon.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Cells.favouritePokemonCellIdentifier, for: indexPath) as! FavouritePokemonCell
+
+    func collectionView(
+        _ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        let cell =
+            collectionView.dequeueReusableCell(
+                withReuseIdentifier: Files.Cells
+                    .favouritePokemonCellIdentifier, for: indexPath)
+            as! FavouritePokemonCell
         cell.configure(pokemon: profileManager.favouritePokemon[indexPath.row])
         return cell
     }
 }
 
-
-extension ProfileViewController: FavouritesServiceDelegate{
-    func didUpdatePokemonFavourites(_ pokemonApi: PokemonApi, pokemon: [PokemonListModel]) {
+extension ProfileViewController: FavouritesServiceDelegate {
+    func didUpdatePokemonFavourites(
+        _ pokemonApi: PokemonApi, pokemon: [PokemonListModel]
+    ) {
         profileManager.addFavourites(pokemon)
-        DispatchQueue.main.async{
-            if pokemon.count == 1{
+        DispatchQueue.main.async {
+            if pokemon.count == 1 {
                 self.contentView.changeColumns(to: 1)
-            } else{
+            } else {
                 self.contentView.changeColumns(to: 2)
             }
-            self.contentView.setFavouriteLabelText(numberOfPokemon: pokemon.count)
-            
+            self.contentView.setFavouriteLabelText(
+                numberOfPokemon: pokemon.count)
+
             self.contentView.favouritesCollectionView.reloadData()
         }
     }
-    
+
     func didFailWithError(_ error: any Error) {
         print(error)
     }
-    
 
-    
 }

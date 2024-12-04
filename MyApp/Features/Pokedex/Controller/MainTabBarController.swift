@@ -62,7 +62,6 @@ class MainTabBarController: UITabBarController {
         }
 
         if user != nil {
-            print("logout set")
             visibleController.navigationItem.rightBarButtonItem =
                 UIBarButtonItem(
                     title: "Logout",
@@ -92,9 +91,9 @@ class MainTabBarController: UITabBarController {
 
     @objc func handleLogin() {
         let storyboard = UIStoryboard(
-            name: Constants.Storyboards.authentication, bundle: nil)
+            name: Files.Storyboard.authenticationName, bundle: nil)
         let authVC = storyboard.instantiateViewController(
-            withIdentifier: Constants.StoryboardID.authentication)
+            withIdentifier: Files.Storyboard.authenticationID)
         let navController = UINavigationController(rootViewController: authVC)
         authVC.navigationItem.leftBarButtonItem = UIBarButtonItem(
             title: "Back", style: .plain, target: self,

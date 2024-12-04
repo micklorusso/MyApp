@@ -14,17 +14,19 @@ struct UserProfile: Codable, Equatable {
     var dateOfBirth: String
     var profileImagePath: String?
 
-    init(name: String, lastName: String, dateOfBirth: String, profileImagePath: String?) {
+    init(
+        name: String, lastName: String, dateOfBirth: String,
+        profileImagePath: String?
+    ) {
         self.name = name
         self.lastName = lastName
         self.dateOfBirth = dateOfBirth
         self.profileImagePath = profileImagePath
     }
-    
-    static func ==(lhs: UserProfile, rhs: UserProfile) -> Bool {
-           return lhs.name == rhs.name &&
-               lhs.lastName == rhs.lastName &&
-               lhs.dateOfBirth == rhs.dateOfBirth &&
-               lhs.profileImagePath == rhs.profileImagePath
-       }
+
+    static func == (lhs: UserProfile, rhs: UserProfile) -> Bool {
+        return lhs.name == rhs.name && lhs.lastName == rhs.lastName
+            && lhs.dateOfBirth == rhs.dateOfBirth
+            && lhs.profileImagePath == rhs.profileImagePath
+    }
 }

@@ -5,7 +5,7 @@
 //  Created by Lorusso, Michele on 22/11/24.
 //
 
-struct PokemonDetail: Decodable{
+struct PokemonDetail: Decodable {
     let name: String?
     let types: [PokemonType]?
     let sprites: Sprites?
@@ -17,44 +17,44 @@ struct PokemonDetail: Decodable{
     let stats: [Stat]?
 }
 
-struct Ability: Decodable{
+struct Ability: Decodable {
     let ability: AbilityInfo
 }
 
-struct AbilityInfo: Decodable{
+struct AbilityInfo: Decodable {
     let name: String
 }
 
-struct Stat: Decodable{
+struct Stat: Decodable {
     let base_stat: Int
     let stat: StatInfo
 }
 
-struct StatInfo: Decodable{
+struct StatInfo: Decodable {
     let name: String
 }
 
-struct PokemonType: Decodable{
+struct PokemonType: Decodable {
     let type: TypeInfo
 }
 
-struct TypeInfo: Decodable{
+struct TypeInfo: Decodable {
     let name: String
 }
 
-struct Sprites: Decodable{
+struct Sprites: Decodable {
     let front_default: String
     let other: OtherSprites
 }
 
-struct OtherSprites: Decodable{
+struct OtherSprites: Decodable {
     let officialArtwork: OfficialArtwork
 
-       enum CodingKeys: String, CodingKey {
-           case officialArtwork = "official-artwork"
-       }
+    enum CodingKeys: String, CodingKey {
+        case officialArtwork = "official-artwork"
+    }
 }
 
-struct OfficialArtwork: Decodable{
+struct OfficialArtwork: Decodable {
     let front_default: String
 }

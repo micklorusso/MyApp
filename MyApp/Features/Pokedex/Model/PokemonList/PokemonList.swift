@@ -5,12 +5,11 @@
 //  Created by Lorusso, Michele on 22/11/24.
 //
 
-struct PokemonList: Decodable{
+struct PokemonList: Decodable {
     let results: [Result]
 }
 
-
-struct Result: Decodable{
+struct Result: Decodable {
     let name: String
     let url: String
 }

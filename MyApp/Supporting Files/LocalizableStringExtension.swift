@@ -7,12 +7,13 @@
 
 import Foundation
 
-extension String{
-    func localized() -> String{
-        return NSLocalizedString(self,
-                                 tableName: Constants.localizedStringsTable,
-                                 bundle: .main,
-                                 value: self,
-                                 comment: self)
+extension String {
+    func localized() -> String {
+        return NSLocalizedString(
+            self,
+            tableName: Localization.localizedStringsTable,
+            bundle: .main,
+            value: self,
+            comment: self)
     }
 }

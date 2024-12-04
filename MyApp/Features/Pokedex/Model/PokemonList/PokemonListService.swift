@@ -6,18 +6,17 @@
 //
 import Foundation
 
-protocol PokemonListServiceDelegate{
-    func didUpdatePokemonList(_ pokemonApi: PokemonApi, pokemon: [PokemonListModel])
+protocol PokemonListServiceDelegate {
+    func didUpdatePokemonList(
+        _ pokemonApi: PokemonApi, pokemon: [PokemonListModel])
     func didFailWithError(_ error: Error)
 }
-
-
 
 class PokemonListService: PokemonApi {
     var delegate: PokemonListServiceDelegate?
 
     func fetchData(offset: Int) async {
-        let stringUrl = "\(Constants.apiURL)\(Constants.Routes.pokemonList)\(offset)"
+        let stringUrl = "\(Routes.API.apiURL)\(Routes.API.pokemonList)\(offset)"
         guard let url = URL(string: stringUrl) else { return }
         var fetchedPokemon: [PokemonListModel] = []
         do {
@@ -25,8 +24,10 @@ class PokemonListService: PokemonApi {
             for result in pokemonList.results {
                 if let pokemonURL = URL(string: result.url) {
                     do {
-                        let pokemonDetail: PokemonDetail = try await performRequest(with: pokemonURL)
-                        let pokemonModel = PokemonListModel(pokemonDetail: pokemonDetail)
+                        let pokemonDetail: PokemonDetail =
+                            try await performRequest(with: pokemonURL)
+                        let pokemonModel = PokemonListModel(
+                            pokemonDetail: pokemonDetail)
                         fetchedPokemon.append(pokemonModel)
                     } catch {
                         delegate?.didFailWithError(error)
@@ -38,5 +39,5 @@ class PokemonListService: PokemonApi {
             delegate?.didFailWithError(error)
         }
     }
-    
+
 }

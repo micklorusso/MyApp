@@ -28,8 +28,8 @@ class LanguageManager {
     }
 
     static func getCurrentLanguageCode() -> String {
-        UserDefaults.standard.string(forKey: Constants.Language.languageKey)
-            ?? Constants.Language.defaultLanguage
+        UserDefaults.standard.string(forKey: Localization.languageKey)
+            ?? Localization.defaultLanguage
     }
 }
 
@@ -58,7 +58,7 @@ extension Bundle {
 
     static func setLanguage(_ language: String) {
         UserDefaults.standard.set(
-            language, forKey: Constants.Language.languageKey)
+            language, forKey: Localization.languageKey)
         UserDefaults.standard.synchronize()
         _ = onLanguageDispatch
     }

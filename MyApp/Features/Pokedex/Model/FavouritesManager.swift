@@ -40,15 +40,15 @@ class FavouritesManager {
 
     private func saveFavourites() {
         UserDefaults.standard.set(
-            Array(favourites), forKey: Constants.LocalStorage.favouritesKey)
+            Array(favourites), forKey: Storage.Local.favouritesKey)
     }
 
     private func loadFavourites() {
         if let savedFavourites = UserDefaults.standard.array(
-            forKey: Constants.LocalStorage.favouritesKey) as? [Int]
+            forKey: Storage.Local.favouritesKey) as? [Int]
         {
             favourites = Set(savedFavourites)
         }
     }
-    
+
 }

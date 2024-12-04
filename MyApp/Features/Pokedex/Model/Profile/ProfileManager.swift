@@ -11,6 +11,7 @@ import UIKit
 class ProfileManager {
     var favouritePokemon: [PokemonListModel] = []
     let favouritesService = FavouritesService()
+    @Published var isLoading = false
 
     private var profile: UserProfile = UserProfile(
         name: "", lastName: "", dateOfBirth: "", profileImagePath: nil)
@@ -28,13 +29,17 @@ class ProfileManager {
     }
 
     func loadFavourites() {
+        guard !isLoading else { return }
+        isLoading = true
+        //sleep(2)
         Task {
             await favouritesService.fetchData(
                 forIds: Array(FavouritesManager.shared.favourites))
         }
     }
-    
+
     func addFavourites(_ pokemon: [PokemonListModel]) {
+        isLoading = false
         favouritePokemon.removeAll()
         favouritePokemon.append(contentsOf: pokemon)
         favouritePokemon.sort {
@@ -56,9 +61,9 @@ class ProfileManager {
             FileManager.default.fileExists(atPath: profileImagePath)
         {
             return UIImage(contentsOfFile: profileImagePath) ?? UIImage(
-                named: Constants.Assets.profilePlaceholder)!
+                named: UIConstants.Profile.profilePlaceholder)!
         } else {
-            return UIImage(named: Constants.Assets.profilePlaceholder)!
+            return UIImage(named: UIConstants.Profile.profilePlaceholder)!
         }
     }
 
@@ -85,7 +90,7 @@ class ProfileManager {
                     at: documentsDirectory, includingPropertiesForKeys: nil)
                 for file in contents {
                     if file.lastPathComponent.hasPrefix(
-                        Constants.LocalStorage.profileImageName)
+                        Storage.Local.profileImageName)
                     {
                         try fileManager.removeItem(at: file)
                         print(
@@ -99,7 +104,7 @@ class ProfileManager {
 
             let fileExtension = imageURL.pathExtension
             let destinationURL = documentsDirectory.appendingPathComponent(
-                "\(Constants.LocalStorage.profileImageName).\(fileExtension)")
+                "\(Storage.Local.profileImageName).\(fileExtension)")
 
             do {
                 try fileManager.copyItem(at: imageURL, to: destinationURL)
@@ -118,7 +123,7 @@ class ProfileManager {
         do {
             let jsonData = try JSONEncoder().encode(profile)
             KeychainHelper.shared.save(
-                data: jsonData, forKey: Constants.LocalStorage.userProfile)
+                data: jsonData, forKey: Storage.Local.userProfile)
         } catch {
             print("Failed to encode profile: \(error)")
         }
@@ -127,7 +132,7 @@ class ProfileManager {
     private func loadProfile() {
         guard
             let jsonData = KeychainHelper.shared.retrieveData(
-                forKey: Constants.LocalStorage.userProfile)
+                forKey: Storage.Local.userProfile)
         else {
             print("No profile data found in Keychain.")
             return

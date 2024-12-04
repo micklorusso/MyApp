@@ -29,7 +29,6 @@ class BaseStatsSection: UIView {
             horizontalStack.spacing = 15
             horizontalStack.translatesAutoresizingMaskIntoConstraints = false
 
-
             let nameLabel = UILabel()
             nameLabel.text = stat.name
             nameLabel.textAlignment = .center

@@ -34,6 +34,10 @@ class ProfileView: UIView {
         return view
     }()
 
+    @objc private func dismissKeyboard() {
+        contentView.endEditing(true)
+    }
+
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +86,7 @@ class ProfileView: UIView {
         textField.keyboardType = .numbersAndPunctuation
         return textField
     }()
-    
+
     private let favouritesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -90,13 +94,13 @@ class ProfileView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
-    func setFavouriteLabelText(numberOfPokemon: Int){
-        if numberOfPokemon > 0{
-            favouritesLabel.font = UIFont.boldSystemFont(ofSize: 30)
+
+    func setFavouriteLabelText(numberOfPokemon: Int) {
+        if numberOfPokemon > 0 {
+            favouritesLabel.font = AppFonts.systemFontBold(ofSize: 30)
             favouritesLabel.text = "Favourites"
-        } else{
-            favouritesLabel.font = UIFont.systemFont(ofSize: 30)
+        } else {
+            favouritesLabel.font = AppFonts.systemFontRegular(ofSize: 30)
             favouritesLabel.text = "You don't have any favourite pokemon yet"
         }
     }
@@ -114,18 +118,32 @@ class ProfileView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.register(
-            UINib(nibName: Constants.Cells.favouritePokemonCellNibName, bundle: nil),
-            forCellWithReuseIdentifier: Constants.Cells.favouritePokemonCellIdentifier)
+            UINib(
+                nibName: Files.Cells.favouritePokemonCellNibName,
+                bundle: nil),
+            forCellWithReuseIdentifier: Files.Cells
+                .favouritePokemonCellIdentifier)
 
         return collectionView
     }()
-    
+
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+        return indicator
+    }()
+
     func changeColumns(to numberOfColumns: Int) {
-        guard let layout = favouritesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        guard
+            let layout = favouritesCollectionView.collectionViewLayout
+                as? UICollectionViewFlowLayout
+        else { return }
 
         let spacing: CGFloat = 8
         let totalSpacing = spacing * CGFloat(numberOfColumns - 1)
-        let availableWidth = favouritesCollectionView.bounds.width - totalSpacing
+        let availableWidth =
+            favouritesCollectionView.bounds.width - totalSpacing
         let itemWidth = availableWidth / CGFloat(numberOfColumns)
 
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
@@ -185,6 +203,7 @@ class ProfileView: UIView {
 
         addSubview(scrollView)
         scrollView.addSubview(contentView)
+        scrollView.delegate = self
 
         contentView.addSubview(profileImageView)
         contentView.addSubview(nameTextField)
@@ -192,6 +211,10 @@ class ProfileView: UIView {
         contentView.addSubview(birthdateTextField)
         contentView.addSubview(favouritesLabel)
         contentView.addSubview(favouritesCollectionView)
+        contentView.addSubview(activityIndicator)
+        let tapGesture = UITapGestureRecognizer(
+            target: self, action: #selector(dismissKeyboard))
+        contentView.addGestureRecognizer(tapGesture)
 
         NSLayoutConstraint.activate([
             // ScrollView
@@ -241,18 +264,33 @@ class ProfileView: UIView {
                 equalTo: contentView.leadingAnchor, constant: 20),
             birthdateTextField.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor, constant: -20),
-            
+
             // Favourites Label
-            favouritesLabel.topAnchor.constraint(equalTo: birthdateTextField.bottomAnchor, constant: 20),
-            favouritesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            favouritesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            
+            favouritesLabel.topAnchor.constraint(
+                equalTo: birthdateTextField.bottomAnchor, constant: 20),
+            favouritesLabel.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor, constant: 20),
+            favouritesLabel.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor, constant: -20),
+
+            // Loader
+            activityIndicator.topAnchor.constraint(
+                equalTo: favouritesLabel.bottomAnchor, constant: 20),
+            activityIndicator.centerXAnchor.constraint(
+                equalTo: contentView.centerXAnchor),
+
             // Favourites CollectionView
-            favouritesCollectionView.topAnchor.constraint(equalTo: favouritesLabel.bottomAnchor, constant: 10),
-            favouritesCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            favouritesCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            favouritesCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            favouritesCollectionView.heightAnchor.constraint(greaterThanOrEqualToConstant: 200)
+            favouritesCollectionView.topAnchor.constraint(
+                equalTo: favouritesLabel.bottomAnchor, constant: 10),
+            favouritesCollectionView.bottomAnchor.constraint(
+                equalTo: contentView.bottomAnchor),
+            favouritesCollectionView.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor),
+            favouritesCollectionView.trailingAnchor.constraint(
+                equalTo: contentView.trailingAnchor),
+            favouritesCollectionView.heightAnchor.constraint(
+                greaterThanOrEqualToConstant: 200),
+
         ])
     }
 
@@ -305,3 +343,8 @@ extension ProfileView: UITextFieldDelegate {
     }
 }
 
+extension ProfileView: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        contentView.endEditing(true)
+    }
+}

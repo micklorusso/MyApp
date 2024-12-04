@@ -5,8 +5,8 @@
 //  Created by Lorusso, Michele on 30/11/24.
 //
 
-import Security
 import Foundation
+import Security
 
 class KeychainHelper {
     static let shared = KeychainHelper()
@@ -16,7 +16,7 @@ class KeychainHelper {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
-            kSecValueData as String: data
+            kSecValueData as String: data,
         ]
 
         SecItemDelete(query as CFDictionary)
@@ -29,7 +29,7 @@ class KeychainHelper {
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
             kSecReturnData as String: true,
-            kSecMatchLimit as String: kSecMatchLimitOne
+            kSecMatchLimit as String: kSecMatchLimitOne,
         ]
 
         var item: CFTypeRef?
@@ -42,7 +42,7 @@ class KeychainHelper {
     func deleteData(forKey key: String) {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key
+            kSecAttrAccount as String: key,
         ]
 
         SecItemDelete(query as CFDictionary)
