@@ -98,10 +98,10 @@ class ProfileView: UIView {
     func setFavouriteLabelText(numberOfPokemon: Int) {
         if numberOfPokemon > 0 {
             favouritesLabel.font = AppFonts.systemFontBold(ofSize: 30)
-            favouritesLabel.text = "Favourites"
+            favouritesLabel.text = "Favourites".localized()
         } else {
             favouritesLabel.font = AppFonts.systemFontRegular(ofSize: 30)
-            favouritesLabel.text = "You don't have any favourite pokemon yet"
+            favouritesLabel.text = "You don't have any favourite pokemon yet".localized()
         }
     }
 
@@ -317,7 +317,7 @@ extension ProfileView: UITextFieldDelegate {
 
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if textField.text == "" {
-            textField.placeholder = "Write something here"
+            textField.placeholder = "Write something here".localized()
             return false
         } else {
             return true

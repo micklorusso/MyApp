@@ -106,6 +106,7 @@
                         <outlet property="emailTextfield" destination="5ur-ha-Ohz" id="2VP-W6-6wW"/>
                         <outlet property="passwordTextfield" destination="Rvk-ic-7kI" id="fLh-FM-cp0"/>
                         <outlet property="popupLabel" destination="V00-5e-27i" id="8Vv-Wi-d61"/>
+                        <outlet property="registerButton" destination="WLT-Ed-kcJ" id="V6C-jl-V0G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNt-AX-bnw" sceneMemberID="firstResponder"/>

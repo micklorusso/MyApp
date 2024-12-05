@@ -64,7 +64,7 @@ class MainTabBarController: UITabBarController {
         if user != nil {
             visibleController.navigationItem.rightBarButtonItem =
                 UIBarButtonItem(
-                    title: "Logout",
+                    title: "Log Out".localized(),
                     style: .plain,
                     target: self,
                     action: #selector(self.handleLogout)
@@ -72,7 +72,7 @@ class MainTabBarController: UITabBarController {
         } else {
             visibleController.navigationItem.rightBarButtonItem =
                 UIBarButtonItem(
-                    title: "Login",
+                    title: "Log In".localized(),
                     style: .plain,
                     target: self,
                     action: #selector(self.handleLogin)
@@ -96,7 +96,7 @@ class MainTabBarController: UITabBarController {
             withIdentifier: Files.Storyboard.authenticationID)
         let navController = UINavigationController(rootViewController: authVC)
         authVC.navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: "Back", style: .plain, target: self,
+            title: "Back".localized(), style: .plain, target: self,
             action: #selector(dismissAuthVC)
         )
         navController.modalPresentationStyle = .fullScreen

@@ -25,10 +25,14 @@ struct UIConstants {
 
     struct PokemonDetail {
         static let defaultBackgroundColor = UIColor.green
-        static let animationDuration = 0.5
+        static let animationDuration = 1.0
     }
 
     struct Profile {
         static let profilePlaceholder = "ProfilePlaceholder"
+    }
+    
+    struct SplashScreen{
+        static let shakeAndBounceAnimationKey = "shakeAndBounce"
     }
 }

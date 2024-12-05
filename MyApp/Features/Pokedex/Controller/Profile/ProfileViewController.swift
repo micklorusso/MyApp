@@ -16,6 +16,8 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "Profile".localized()
 
         contentView.favouritesCollectionView.dataSource = self
         profileManager.favouritesService.delegate = self

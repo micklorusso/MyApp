@@ -64,6 +64,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Authentication" id="9vr-lZ-wbB"/>
+                    <connections>
+                        <outlet property="logInButton" destination="JTG-ub-XgP" id="Kjb-Lb-Zgd"/>
+                        <outlet property="registerButton" destination="lrV-3V-KAl" id="WIO-Lb-HPd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekx-FY-m1R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

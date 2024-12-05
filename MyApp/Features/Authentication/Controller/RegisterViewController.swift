@@ -16,9 +16,13 @@ class RegisterViewController: UIViewController {
 
     @IBOutlet weak var popupLabel: UILabel!
 
+    @IBOutlet weak var registerButton: UIButton!
+    
     override func viewDidLoad() {
         popupLabel.layer.cornerRadius = 24
         popupLabel.isHidden = true
+        
+        registerButton.setTitle("Register".localized(), for: .normal)
     }
 
     @IBAction func registerPressed(_ sender: UIButton) {

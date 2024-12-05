@@ -104,6 +104,7 @@
                     <navigationItem key="navigationItem" id="piW-5O-txY"/>
                     <connections>
                         <outlet property="emailTextfield" destination="e1a-co-vsj" id="1aW-hG-QDb"/>
+                        <outlet property="logInButton" destination="Qdq-f1-j9q" id="5KJ-wW-Uhb"/>
                         <outlet property="passwordTextfield" destination="eZb-aK-J6e" id="ZYD-M6-qE8"/>
                         <outlet property="popupLabel" destination="wSO-B9-ziD" id="pvM-Wy-dd6"/>
                     </connections>

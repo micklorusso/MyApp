@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFf-0X-nxp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7cq-Wc-bAu">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,7 +33,8 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="YeM-pK-igC">
             <objects>
-                <tabBarController id="QFf-0X-nxp" customClass="MainTabBarController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" id="QFf-0X-nxp" customClass="MainTabBarController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="27h-Ja-yK9"/>
                     <tabBar key="tabBar" contentMode="top" insetsLayoutMarginsFromSafeArea="NO" id="xA9-4z-DgP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -119,10 +122,45 @@
             </objects>
             <point key="canvasLocation" x="833" y="-711"/>
         </scene>
+        <!--Splash Screen View Controller-->
+        <scene sceneID="tx9-Jd-vws">
+            <objects>
+                <viewController storyboardIdentifier="SplashScreen" id="7cq-Wc-bAu" customClass="SplashScreenViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="99J-dY-Bx7">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pokeball" translatesAutoresizingMaskIntoConstraints="NO" id="Cns-tO-T4e">
+                                <rect key="frame" x="96.666666666666686" y="326" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="I6x-aL-xuw"/>
+                                    <constraint firstAttribute="height" constant="200" id="MtC-fz-R2V"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="EEb-gg-TsW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Cns-tO-T4e" firstAttribute="centerX" secondItem="99J-dY-Bx7" secondAttribute="centerX" id="3Vq-Nk-Cme"/>
+                            <constraint firstItem="Cns-tO-T4e" firstAttribute="centerY" secondItem="99J-dY-Bx7" secondAttribute="centerY" id="6hE-Oc-Au2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pokeballImageView" destination="Cns-tO-T4e" id="ain-GC-K5c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tvE-TG-uTi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2002" y="305"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Pokeball" width="200" height="200"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

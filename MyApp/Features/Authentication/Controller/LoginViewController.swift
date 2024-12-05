@@ -10,7 +10,8 @@ import FirebaseAuth
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    @IBOutlet weak var logInButton: UIButton!
+    
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
 
@@ -19,6 +20,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         popupLabel.layer.cornerRadius = 24
         popupLabel.isHidden = true
+            
+        logInButton.setTitle("Log In".localized(), for: .normal)
     }
 
     @IBAction func loginPressed(_ sender: UIButton) {

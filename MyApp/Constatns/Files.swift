@@ -10,6 +10,7 @@ struct Files {
     struct Storyboard {
         static let authenticationName = "Authentication"
         static let authenticationID = "Authentication"
+        static let mainTabBarControllerID = "MainTabBarController"
     }
 
     struct Cells {
