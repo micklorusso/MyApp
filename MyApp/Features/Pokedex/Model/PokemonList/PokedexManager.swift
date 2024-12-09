@@ -10,11 +10,17 @@ import Combine
 class PokedexManager {
     var pokedex: [PokemonListModel] = []
     let pokemonListService = PokemonListService()
+    let audinoService = FavouritesService()
 
     @Published var isLoading = false
     private var currentPage = 0
     private var currentPageItemCount = 0
     private var hasMoreData = true
+    
+    
+    init(){
+        loadAudino()
+    }
 
     func addPokemon(_ pokemon: [PokemonListModel]) {
         isLoading = false
@@ -22,7 +28,13 @@ class PokedexManager {
         pokedex.append(contentsOf: pokemon)
         pokedex.sort {
             if let firstItemPos = $0.order, let secondItemPos = $1.order {
-                return firstItemPos < secondItemPos
+                if firstItemPos == 646 {
+                    return true
+                } else if secondItemPos == 646 {
+                    return false
+                } else {
+                    return firstItemPos < secondItemPos
+                }
             } else {
                 return false
             }
@@ -46,6 +58,12 @@ class PokedexManager {
         Task {
             await pokemonListService.fetchData(
                 offset: currentPage * Routes.API.pokemonPerPage)
+        }
+    }
+    
+    func loadAudino(){
+        Task {
+            await audinoService.fetchData(forIds: [531])
         }
     }
 

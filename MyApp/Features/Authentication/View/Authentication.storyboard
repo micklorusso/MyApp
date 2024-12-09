@@ -12,7 +12,7 @@
         <!--Authentication-->
         <scene sceneID="Aws-9v-5cf">
             <objects>
-                <viewController storyboardIdentifier="Authentication" id="tuN-ZX-d6v" customClass="AuthenticationViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthenticationViewController" id="tuN-ZX-d6v" customClass="AuthenticationViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aOS-p1-4WI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +28,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="sGv-BD-Xi1" kind="show" id="rgK-t3-Clv"/>
+                                    <action selector="loginPressed:" destination="tuN-ZX-d6v" eventType="touchUpInside" id="C5O-jW-Uhg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrV-3V-KAl">
@@ -43,23 +43,25 @@
                                     <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="J72-ca-8zC" kind="show" id="V5T-ki-bDI"/>
+                                    <action selector="registerPressed:" destination="tuN-ZX-d6v" eventType="touchUpInside" id="C4x-VE-kT9"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_image" translatesAutoresizingMaskIntoConstraints="NO" id="ugC-DK-oIK">
-                                <rect key="frame" x="163.33333333333334" y="392.66666666666669" width="66.666666666666657" height="66.666666666666686"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cover" translatesAutoresizingMaskIntoConstraints="NO" id="XdB-cd-x0j">
+                                <rect key="frame" x="0.0" y="59" width="393" height="642"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YKD-aX-cXv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JTG-ub-XgP" firstAttribute="leading" secondItem="YKD-aX-cXv" secondAttribute="leading" id="1v9-K7-XcH"/>
+                            <constraint firstItem="XdB-cd-x0j" firstAttribute="leading" secondItem="YKD-aX-cXv" secondAttribute="leading" id="1zJ-hH-K2z"/>
+                            <constraint firstItem="lrV-3V-KAl" firstAttribute="top" secondItem="XdB-cd-x0j" secondAttribute="bottom" id="5R4-pQ-QpG"/>
                             <constraint firstItem="JTG-ub-XgP" firstAttribute="top" secondItem="lrV-3V-KAl" secondAttribute="bottom" constant="8" id="8jP-bY-zHk"/>
+                            <constraint firstItem="XdB-cd-x0j" firstAttribute="top" secondItem="YKD-aX-cXv" secondAttribute="top" id="Bt3-6T-6YE"/>
+                            <constraint firstItem="XdB-cd-x0j" firstAttribute="trailing" secondItem="YKD-aX-cXv" secondAttribute="trailing" id="HhH-hH-9tU"/>
                             <constraint firstItem="JTG-ub-XgP" firstAttribute="bottom" secondItem="YKD-aX-cXv" secondAttribute="bottom" id="Qrj-It-hIE"/>
                             <constraint firstItem="JTG-ub-XgP" firstAttribute="trailing" secondItem="YKD-aX-cXv" secondAttribute="trailing" id="SaF-ms-gEY"/>
-                            <constraint firstItem="ugC-DK-oIK" firstAttribute="centerY" secondItem="aOS-p1-4WI" secondAttribute="centerY" id="awW-a2-fGc"/>
                             <constraint firstItem="lrV-3V-KAl" firstAttribute="trailing" secondItem="YKD-aX-cXv" secondAttribute="trailing" id="d4q-u4-lBl"/>
-                            <constraint firstItem="ugC-DK-oIK" firstAttribute="centerX" secondItem="aOS-p1-4WI" secondAttribute="centerX" id="dZE-ff-VEk"/>
                             <constraint firstItem="lrV-3V-KAl" firstAttribute="leading" secondItem="YKD-aX-cXv" secondAttribute="leading" id="qnp-TJ-97t"/>
                         </constraints>
                     </view>
@@ -71,31 +73,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekx-FY-m1R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3503" y="318"/>
-        </scene>
-        <!--Register-->
-        <scene sceneID="eNh-GP-dSa">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Register" referencedIdentifier="Register" id="J72-ca-8zC" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="fyM-PS-0P5"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k9u-aR-45e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2623" y="304"/>
-        </scene>
-        <!--Login-->
-        <scene sceneID="1Bn-Ob-ibJ">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="Login" id="sGv-BD-Xi1" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="vok-uO-mRG"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CKa-eq-cCK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2579" y="426"/>
+            <point key="canvasLocation" x="-3503.0534351145038" y="316.90140845070425"/>
         </scene>
     </scenes>
     <resources>
-        <image name="auth_image" width="66.666664123535156" height="66.666664123535156"/>
+        <image name="Cover" width="245.33332824707031" height="347"/>
         <namedColor name="BrandBlue">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

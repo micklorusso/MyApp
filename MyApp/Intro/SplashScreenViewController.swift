@@ -7,7 +7,9 @@
 
 import UIKit
 
-class SplashScreenViewController: UIViewController {
+class SplashScreenViewController: UIViewController, Storyboarded {
+    
+    var transitionToMainScreen: (() -> Void)?
 
     @IBOutlet weak var pokeballImageView: UIImageView!
 
@@ -71,24 +73,10 @@ class SplashScreenViewController: UIViewController {
                     }
                 ) { _ in
                     self.pokeballImageView.removeFromSuperview()
-                    self.transitionToMainScreen()
+                    self.transitionToMainScreen?()
                 }
             }
         }
     }
 
-    func transitionToMainScreen() {
-        let mainTabBarController =
-            self.storyboard?.instantiateViewController(
-                withIdentifier: Files.Storyboard.mainTabBarControllerID)
-            as! UITabBarController
-
-        let scenes = UIApplication.shared.connectedScenes
-        let windowScene = scenes.first as? UIWindowScene
-
-        if let window = windowScene?.windows.first {
-            window.rootViewController = mainTabBarController
-            window.makeKeyAndVisible()
-        }
-    }
 }

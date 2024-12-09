@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, Storyboarded {
     
     @IBOutlet weak var languagePickerView: UIPickerView!
     

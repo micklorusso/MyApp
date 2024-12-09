@@ -103,80 +103,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2A406B9D-3B7B-4B7B-95BB-0CDC699C7A44"
+            uuid = "B2E1B7E4-BA8A-494E-9BC6-4095306B1FE9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyApp/Features/Pokedex/Controller/MainTabBarController.swift"
+            filePath = "MyApp/Features/Pokedex/Model/PokemonList/PokedexManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "tabBarController(_:didSelect:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "addPokemon(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "979CDEB0-5CE3-4901-B439-C60279308037"
+            uuid = "6CA9910B-B239-45F7-9D03-F9D6AC0F9FBC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyApp/Features/Pokedex/Controller/MainTabBarController.swift"
+            filePath = "MyApp/Features/Pokedex/Controller/PokemonList/PokedexViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "tabBarController(_:didSelect:)"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EF006E0B-4CC2-499E-8750-E256008A0949"
+            uuid = "0F3DA8D9-4F06-4F59-A197-B478CCB379BF"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyApp/Features/Pokedex/Controller/MainTabBarController.swift"
+            filePath = "MyApp/Features/Pokedex/Controller/PokemonList/PokedexCoordinator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "updateNavigationBar(for:)"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "start()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "71D7D9AA-62BF-45A1-8DAB-166A56B3B30B"
+            uuid = "420B1ACE-1B9F-4BD2-B887-D4FF1DACC561"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyApp/Features/Pokedex/Controller/MainTabBarController.swift"
+            filePath = "MyApp/Features/Pokedex/Controller/PokemonList/PokedexCoordinator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "updateNavigationBar(for:)"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "start()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "278919BE-A70D-43EA-AA7A-42D0ED1A9412"
+            uuid = "A845A2B3-558D-49AB-B08B-17AEBE549541"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyApp/Features/Pokedex/Controller/MainTabBarController.swift"
+            filePath = "MyApp/Features/Pokedex/Controller/TabBarCoordinator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "start()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

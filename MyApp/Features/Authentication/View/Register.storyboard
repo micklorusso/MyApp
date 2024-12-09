@@ -11,7 +11,7 @@
         <!--Register View Controller-->
         <scene sceneID="bpT-h0-rhv">
             <objects>
-                <viewController storyboardIdentifier="Register" id="smp-Uu-Uue" customClass="RegisterViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" id="smp-Uu-Uue" customClass="RegisterViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ISn-Xt-hpH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

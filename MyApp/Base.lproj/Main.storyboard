@@ -8,28 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Pokedex-->
-        <scene sceneID="jN0-B8-lQW">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Pokedex" referencedIdentifier="Pokedex" id="hii-f9-E13" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="vOh-EU-WgX"/>
-                    <navigationItem key="navigationItem" id="cQq-5N-LEu"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N5N-6e-gKe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="812" y="27"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="aWt-ge-caC">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" referencedIdentifier="Settings" id="ikW-os-dKH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Ja6-ut-gjU"/>
-                    <navigationItem key="navigationItem" id="DAl-rH-Qfz"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YnD-7g-mju" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="833" y="732"/>
-        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="YeM-pK-igC">
             <objects>
@@ -39,93 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="0Br-wj-uWO" kind="relationship" relationship="viewControllers" id="gYY-2F-ayz"/>
-                        <segue destination="9St-ie-3Vb" kind="relationship" relationship="viewControllers" id="WyS-U1-UaZ"/>
-                        <segue destination="dHE-0n-grc" kind="relationship" relationship="viewControllers" id="Pd1-sQ-lUG"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8wQ-Bt-2eZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1040" y="305"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="q9v-zZ-Kev">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0Br-wj-uWO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="list.bullet" catalog="system" id="rca-jf-1Xx">
-                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gQ2-lr-1az">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="hii-f9-E13" kind="relationship" relationship="rootViewController" id="DCd-ZT-2kw"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fC1-d5-hQa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-47" y="27"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="lyl-oF-tvG">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9St-ie-3Vb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="gearshape" catalog="system" id="rwf-Ab-ePn">
-                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lVo-Hi-77M">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ikW-os-dKH" kind="relationship" relationship="rootViewController" id="33F-IA-YAu"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qa2-AL-AY2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-48" y="732"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="3pQ-bf-45y">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dHE-0n-grc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle.fill" catalog="system" id="1eR-2n-DxI">
-                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RnI-03-Fay">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="HfC-2r-rz7" kind="relationship" relationship="rootViewController" id="zdS-uY-1Ik"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cED-eW-pI7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-10" y="-711"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="TxW-Z8-Sfb">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="Profile" id="HfC-2r-rz7" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="ALt-cD-ug6"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x0L-NC-h3T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="833" y="-711"/>
-        </scene>
         <!--Splash Screen View Controller-->
         <scene sceneID="tx9-Jd-vws">
             <objects>
-                <viewController storyboardIdentifier="SplashScreen" id="7cq-Wc-bAu" customClass="SplashScreenViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SplashScreenViewController" id="7cq-Wc-bAu" customClass="SplashScreenViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="99J-dY-Bx7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -156,9 +56,6 @@
     </scenes>
     <resources>
         <image name="Pokeball" width="200" height="200"/>
-        <image name="gearshape" catalog="system" width="128" height="123"/>
-        <image name="list.bullet" catalog="system" width="128" height="87"/>
-        <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

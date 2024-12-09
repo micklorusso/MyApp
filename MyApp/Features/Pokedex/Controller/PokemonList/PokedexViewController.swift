@@ -8,7 +8,8 @@
 import Combine
 import UIKit
 
-class PokedexViewController: UIViewController {
+class PokedexViewController: UIViewController, Storyboarded {
+    var didSelectPokemonRow: ((Int) -> Void)?
     let pokedexManager = PokedexManager()
     private var cancellables: Set<AnyCancellable> = []
 
@@ -16,7 +17,7 @@ class PokedexViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(
@@ -24,6 +25,7 @@ class PokedexViewController: UIViewController {
             forCellReuseIdentifier: Files.Cells.pokemonCellIdentifier)
 
         pokedexManager.pokemonListService.delegate = self
+        pokedexManager.audinoService.delegate = self
         pokedexManager.loadPokemon()
 
         FavouritesManager.shared.$favourites
@@ -100,16 +102,7 @@ extension PokedexViewController: UITableViewDelegate {
     func tableView(
         _ tableView: UITableView, didSelectRowAt indexPath: IndexPath
     ) {
-        performSegue(withIdentifier: Routes.Local.pokedexToDetail, sender: self)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! PokemonDetailViewController
-        destinationVC.hidesBottomBarWhenPushed = true
-        if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.pokemonID =
-                pokedexManager.getPokemon(at: indexPath.row).id
-        }
+        self.didSelectPokemonRow?(indexPath.row)
     }
 }
 
@@ -127,4 +120,15 @@ extension PokedexViewController: PokemonListServiceDelegate {
         print("Error fetching data \(error)")
     }
 
+}
+
+extension PokedexViewController: FavouritesServiceDelegate{
+    func didUpdatePokemonFavourites(_ pokemonApi: PokemonApi, pokemon: [PokemonListModel]) {
+        self.pokedexManager.addPokemon(pokemon)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    
 }

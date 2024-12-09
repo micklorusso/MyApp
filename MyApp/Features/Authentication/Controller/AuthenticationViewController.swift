@@ -7,10 +7,17 @@
 
 import UIKit
 
-class AuthenticationViewController: UIViewController {
+protocol AuthenticationNavigation: AnyObject {
+    func register()
+    func login()
+}
+
+class AuthenticationViewController: UIViewController, Storyboarded {
 
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var logInButton: UIButton!
+    weak var coordinator: AuthenticationNavigation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Authentication".localized()
@@ -20,5 +27,13 @@ class AuthenticationViewController: UIViewController {
         logInButton.setTitle("Log In".localized(), for: .normal)
     }
     
-
+    @IBAction func registerPressed(_ sender: UIButton) {
+        coordinator?.register()
+    }
+    
+    @IBAction func loginPressed(_ sender: UIButton) {
+        coordinator?.login()
+    }
+    
+    
 }

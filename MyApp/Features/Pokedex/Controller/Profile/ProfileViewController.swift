@@ -8,7 +8,7 @@
 import Combine
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, Storyboarded {
 
     lazy var contentView = ProfileView()
     let profileManager = ProfileManager()

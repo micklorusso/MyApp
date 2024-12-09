@@ -14,17 +14,20 @@ class LanguageManager {
 
         guard
             let sceneDelegate = UIApplication.shared.connectedScenes.first?
-                .delegate as? UIWindowSceneDelegate,
+                .delegate as? SceneDelegate,
             let window = sceneDelegate.window
         else {
             return
         }
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController =
-            storyboard.instantiateInitialViewController()
-        window?.rootViewController = initialViewController
-        window?.makeKeyAndVisible()
+        let navigationController = UINavigationController()
+        let mainCoordinator = MainCoordinator(navigationController: navigationController)
+            sceneDelegate.coordinator = mainCoordinator
+            sceneDelegate.window = window
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+
+            mainCoordinator.start()
     }
 
     static func getCurrentLanguageCode() -> String {

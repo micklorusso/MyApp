@@ -11,7 +11,7 @@
         <!--Login View Controller-->
         <scene sceneID="9qb-NO-qUR">
             <objects>
-                <viewController storyboardIdentifier="Login" id="KP6-A1-Zj1" customClass="LoginViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="KP6-A1-Zj1" customClass="LoginViewController" customModule="MyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GVw-EE-ROV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

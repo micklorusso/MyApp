@@ -9,7 +9,8 @@
 import FirebaseAuth
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, Storyboarded {
+    var didLogin: (() -> Void)?
     @IBOutlet weak var logInButton: UIButton!
     
     @IBOutlet weak var emailTextfield: UITextField!
@@ -41,7 +42,7 @@ class LoginViewController: UIViewController {
                         }
                         print(e.localizedDescription)
                     } else {
-                        self.navigationController?.dismiss(animated: true)
+                        self.didLogin?()
                     }
                 }
             }

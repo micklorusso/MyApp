@@ -8,8 +8,12 @@
 import Combine
 import UIKit
 
-class PokemonDetailViewController: UIViewController {
+protocol PokemonDetailNavigation: AnyObject {
+    func didDismissScreen()
+}
 
+class PokemonDetailViewController: UIViewController, Storyboarded {
+    weak var coordinator: PokemonDetailNavigation?
     var pokemonID: Int?
     var pokemonDetailManager: PokemonDetailManager?
 
@@ -76,6 +80,12 @@ class PokemonDetailViewController: UIViewController {
                 .store(in: &cancellables)
         }
 
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        coordinator?.didDismissScreen()
     }
 
     @IBAction func tabChanged(_ sender: UISegmentedControl) {

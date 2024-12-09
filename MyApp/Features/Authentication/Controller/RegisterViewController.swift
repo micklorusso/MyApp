@@ -9,14 +9,15 @@
 import FirebaseAuth
 import UIKit
 
-class RegisterViewController: UIViewController {
-
+class RegisterViewController: UIViewController, Storyboarded {
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
 
     @IBOutlet weak var popupLabel: UILabel!
 
     @IBOutlet weak var registerButton: UIButton!
+    
+    var didRegister: (() -> Void)?
     
     override func viewDidLoad() {
         popupLabel.layer.cornerRadius = 24
@@ -42,7 +43,7 @@ class RegisterViewController: UIViewController {
                         }
                         print(e.localizedDescription)
                     } else {
-                        self.navigationController?.dismiss(animated: true)
+                        self.didRegister?()
                     }
                 }
             }
